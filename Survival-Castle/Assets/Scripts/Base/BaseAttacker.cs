@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(BaseTargetSelector))]
 public class BaseAttacker : MonoBehaviour {
+
+    public Action onAttackStarted;
+    public Action onAttackStopped;
 
     [SerializeField]
     private float _attackRange = 20f;
@@ -20,22 +24,28 @@ public class BaseAttacker : MonoBehaviour {
 
     private void Awake() {
         _baseTargetSelector = GetComponent<BaseTargetSelector>();
+
+        _baseTargetSelector.onTargetSelected += OnTargetSelected;
+    }
+
+    private void OnDestroy() {
+        _baseTargetSelector.onTargetSelected -= OnTargetSelected;
+    }
+
+    private void OnTargetSelected() {
+        StartAttack();
     }
 
     private IEnumerator IAttack() {
         Debug.Log("Start attacking to target.");
         _isAttacking = true;
 
+        onAttackStarted?.Invoke();
+
         while (_isAttacking) {
             yield return new WaitForSeconds(_attackRate);
-
-            if (!_baseTargetSelector.HasTarget) {
-                break;
-            }
-            
             if (_baseTargetSelector.SelectedTarget.IsDead) {
                 StopAttack();
-                _baseTargetSelector.StartSearchTarget();
                 break;
             }
 
@@ -69,6 +79,8 @@ public class BaseAttacker : MonoBehaviour {
     public void StopAttack() {
         Debug.Log("Stop attacking.");
         _isAttacking = false;
+
+        onAttackStopped?.Invoke();
     }
 
 }

@@ -7,7 +7,6 @@ public class CharacterMotor : MonoBehaviour {
 
     public Action onStartMove;
     public Action onStop;
-    public Action onDead;
 
     [SerializeField]
     private float _movementSpeed = 5f;
@@ -56,16 +55,6 @@ public class CharacterMotor : MonoBehaviour {
         yield return null;
     }
 
-    private IEnumerator IDie() {
-        yield return new WaitForSeconds(2f);
-
-        IDieCoroutine = null;
-
-        onDead?.Invoke();
-
-        yield return null;
-    }
-
     private void LookToTarget() {
         Vector3 desiredRotation = _target.position - transform.position;
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(desiredRotation), 0.1f);
@@ -74,12 +63,6 @@ public class CharacterMotor : MonoBehaviour {
     public void Move() {
         if (IMoveCoroutine == null) {
             IMoveCoroutine = StartCoroutine(IMove());
-        }
-    }
-
-    public void Die() {
-        if (IDieCoroutine == null) {
-            IDieCoroutine = StartCoroutine(IDie());
         }
     }
 

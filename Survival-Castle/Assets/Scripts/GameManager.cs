@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public Action<CharacterController> onRemovedCharacter;
-
     #region Singleton
 
     public static GameManager instance;
@@ -28,12 +26,12 @@ public class GameManager : MonoBehaviour {
 
     public void AddCharacter(CharacterController enemy) {
         _enemies.Add(enemy);
+        enemy.onDead += RemoveCharacter;
     }
 
     public void RemoveCharacter(CharacterController enemy) {
         _enemies.Remove(enemy);
-
-        onRemovedCharacter?.Invoke(enemy);
+        enemy.onDead -= RemoveCharacter;
 
         Destroy(enemy.gameObject, 2f);
     }

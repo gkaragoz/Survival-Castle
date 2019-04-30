@@ -1,8 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(BaseAttacker))]
 public class BaseTargetSelector : MonoBehaviour {
+
+    public Action onSearchTargetStarted;
+    public Action onSearchTargetStopped;
+    public Action onTargetSelected;
 
     [SerializeField]
     private float _searchRate = 0.5f;
@@ -20,26 +25,35 @@ public class BaseTargetSelector : MonoBehaviour {
 
     private void Awake() {
         _baseAttacker = GetComponent<BaseAttacker>();
+
+        _baseAttacker.onAttackStopped += OnAttackStopped;
+    }
+
+    private void OnDestroy() {
+        _baseAttacker.onAttackStopped -= OnAttackStopped;
+    }
+
+    private void OnAttackStopped() {
+        StartSearchTarget();
     }
 
     private IEnumerator ISearchTarget() {
         Debug.Log("Start searching target.");
+        _selectedTarget = null;
         _isSearchingTarget = true;
+
+        onSearchTargetStarted?.Invoke();
 
         while (_isSearchingTarget) {
             yield return new WaitForSeconds(_searchRate);
 
-            if (HasTarget) {
-                if (_selectedTarget.IsDead == false) {
-                    StopSearchTarget();
-                    break;
-                }
+            if (!HasTarget) {
+                SelectClosestTarget();
             }
 
-            SelectClosestEnemy();
-
-            if (HasTarget && !_selectedTarget.IsDead) {
-                _baseAttacker.StartAttack();
+            if (HasTarget) {
+                StopSearchTarget();
+                break;
             }
         }
 
@@ -48,7 +62,7 @@ public class BaseTargetSelector : MonoBehaviour {
         yield return null;
     }
 
-    private void SelectClosestEnemy() {
+    private void SelectClosestTarget() {
         int enemyCount = GameManager.instance.Enemies.Count;
         if (enemyCount <= 0) {
             return;
@@ -59,12 +73,18 @@ public class BaseTargetSelector : MonoBehaviour {
 
         for (int ii = 1; ii < enemyCount; ii++) {
             CharacterController potantialTarget = GameManager.instance.Enemies[ii];
+            if (potantialTarget.IsDead) {
+                continue;
+            }
+
             if (Vector3.Distance(transform.position, potantialTarget.transform.position) < distance) {
                 closestTarget = potantialTarget;
             }
         }
 
         _selectedTarget = closestTarget;
+
+        onTargetSelected?.Invoke();
     }
 
     public void StartSearchTarget() {
@@ -76,6 +96,8 @@ public class BaseTargetSelector : MonoBehaviour {
     public void StopSearchTarget() {
         _isSearchingTarget = false;
         Debug.Log("Stop searching target.");
+
+        onSearchTargetStopped?.Invoke();
     }
 
 }

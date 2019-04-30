@@ -1847,6 +1847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRange: 20
   _attackRate: 1
+  _attackDamage: 200
   _isAttacking: 0
 --- !u!1001 &2008786523
 PrefabInstance:

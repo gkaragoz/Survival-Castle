@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterMotor), typeof(CharacterAttacker))]
 public class CharacterController : MonoBehaviour {
+
+    public Action<CharacterController> onDead;
 
     [SerializeField]
     private float _currentHealth;
@@ -26,7 +29,6 @@ public class CharacterController : MonoBehaviour {
 
         _characterMotor.onStartMove += OnStartMove;
         _characterMotor.onStop += OnStop;
-        _characterMotor.onDead += OnDead;
 
         _currentHealth = _maxHealth;
         _slider.maxValue = _maxHealth;
@@ -39,7 +41,6 @@ public class CharacterController : MonoBehaviour {
     private void OnDestroy() {
         _characterMotor.onStartMove -= OnStartMove;
         _characterMotor.onStop -= OnStop;
-        _characterMotor.onDead -= OnDead;
     }
 
     private void Start() {
@@ -53,16 +54,17 @@ public class CharacterController : MonoBehaviour {
         _characterAttacker.Attack();
     }
 
-    private void OnDead() {
+    private void Die() {
         _isDead = true;
-        GameManager.instance.RemoveCharacter(this);
+
+        onDead?.Invoke(this);
     }
 
     public void TakeDamage(float amount) {
         _currentHealth -= amount;
 
         if (_currentHealth <= 0) {
-            _characterMotor.Die();
+            Die();
         }
     }
 
