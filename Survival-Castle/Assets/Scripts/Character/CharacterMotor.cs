@@ -45,6 +45,11 @@ public class CharacterMotor : MonoBehaviour {
                 break;
             }
 
+            if (_characterController.IsDead) {
+                Stop();
+                break;
+            }
+
             LookToTarget();
             transform.Translate(Vector3.forward * _movementSpeed * Time.fixedDeltaTime);
             yield return new WaitForFixedUpdate();

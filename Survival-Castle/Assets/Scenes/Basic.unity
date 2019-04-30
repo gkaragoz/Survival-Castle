@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRange: 20
-  _attackRate: 1
+  _attackRate: 0.5
   _attackDamage: 200
   _isAttacking: 0
 --- !u!1001 &2008786523
