@@ -14,9 +14,7 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     private void Spawn() {
-        GameObject newArcher = Instantiate(_archerPrefab, this.transform);
-        newArcher.transform.position = RandomPointOnCircleEdge(radius);
-
+        GameObject newArcher = Instantiate(_archerPrefab, RandomPointOnCircleEdge(radius), Quaternion.identity, transform);
         GameManager.instance.AddCharacter(newArcher.GetComponent<CharacterController>());
     }
 
