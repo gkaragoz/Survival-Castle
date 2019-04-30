@@ -1,28 +1,66 @@
 fileFormatVersion: 2
 guid: 04fe57db1e02e0942af0bd578a828ed8
-timeCreated: 1451848740
-licenseType: Store
 ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: pine_02
-    100004: pine_03
-    400000: //RootNode
-    400002: pine_02
-    400004: pine_03
-    2300000: //RootNode
-    2300002: pine_02
-    2300004: pine_03
-    3300000: //RootNode
-    3300002: pine_02
-    3300004: pine_03
-    4300000: pine_02
-    4300002: pine_03
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: pine_02
+  - first:
+      1: 100004
+    second: pine_03
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: pine_02
+  - first:
+      4: 400004
+    second: pine_03
+  - first:
+      23: 2300000
+    second: //RootNode
+  - first:
+      23: 2300002
+    second: pine_02
+  - first:
+      23: 2300004
+    second: pine_03
+  - first:
+      33: 3300000
+    second: //RootNode
+  - first:
+      33: 3300002
+    second: pine_02
+  - first:
+      33: 3300004
+    second: pine_03
+  - first:
+      43: 4300000
+    second: pine_02
+  - first:
+      43: 4300002
+    second: pine_03
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leafs_dark__bark_d_tif_001
+    second: {fileID: 2100000, guid: d7cb2ca9835580d4abc9329021ca62a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leafs_dark__leafs_d2_tif_001
+    second: {fileID: 2100000, guid: 62b627f2d162de9448a34e97460be681, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 2
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -35,6 +73,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -49,16 +89,22 @@ ModelImporter:
     globalScale: 0.7
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -69,10 +115,14 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -82,8 +132,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.7
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
