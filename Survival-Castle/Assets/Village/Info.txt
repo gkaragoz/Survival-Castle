@@ -1,2 +1,0 @@
-To improve the scene look I recommend to use Post Processing Camera effects for this scene.
-You can find screens with settings of "Post Processing Profile" bellow in the project.
