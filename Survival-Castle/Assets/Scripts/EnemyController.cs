@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour {
 
     private void Awake() {
         _agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Start() {
