@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+
+    public Action<CharacterController> onRemovedCharacter;
 
     #region Singleton
 
@@ -18,17 +21,21 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Transform _target;
-    private List<GameObject> _enemies = new List<GameObject>();
+    private List<CharacterController> _enemies = new List<CharacterController>();
 
     public Transform Target { get { return _target; } }
+    public List<CharacterController> Enemies { get { return _enemies; } }
 
-    public void AddCharacter(GameObject enemy) {
+    public void AddCharacter(CharacterController enemy) {
         _enemies.Add(enemy);
     }
 
-    public void RemoveCharacter(GameObject enemy) {
+    public void RemoveCharacter(CharacterController enemy) {
         _enemies.Remove(enemy);
-        Destroy(enemy, 2f);
+
+        onRemovedCharacter?.Invoke(enemy);
+
+        Destroy(enemy.gameObject, 2f);
     }
 
 }

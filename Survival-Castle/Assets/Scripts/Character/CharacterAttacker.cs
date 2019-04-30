@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterMotor))]
+[RequireComponent(typeof(CharacterController), typeof(CharacterMotor))]
 public class CharacterAttacker : MonoBehaviour {
 
     public Action onAttack;
@@ -12,11 +12,13 @@ public class CharacterAttacker : MonoBehaviour {
     [SerializeField]
     private bool _isAttacking;
 
+    private CharacterController _characterController;
     private CharacterMotor _characterMotor;
 
     private Coroutine IAttackCoroutine;
 
     private void Awake() {
+        _characterController = GetComponent<CharacterController>();
         _characterMotor = GetComponent<CharacterMotor>();
     }
 
@@ -30,7 +32,7 @@ public class CharacterAttacker : MonoBehaviour {
         while (_isAttacking) {
             yield return new WaitForSeconds(1f);
 
-            if (_characterMotor.IsDead) {
+            if (_characterController.IsDead) {
                 Stop();
                 break;
             }

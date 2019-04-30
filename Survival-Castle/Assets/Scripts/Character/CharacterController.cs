@@ -1,10 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterMotor), typeof(CharacterAttacker))]
 public class CharacterController : MonoBehaviour {
 
+    [SerializeField]
+    private float _currentHealth;
+    [SerializeField]
+    private float _maxHealth;
+
+    [SerializeField]
+    private Slider _slider;
+
     private CharacterMotor _characterMotor;
     private CharacterAttacker _characterAttacker;
+
+    [SerializeField]
+    private bool _isDead = false;
+
+    public bool IsDead { get { return _isDead; } }
 
     private void Awake() {
         _characterMotor = GetComponent<CharacterMotor>();
@@ -13,6 +27,13 @@ public class CharacterController : MonoBehaviour {
         _characterMotor.onStartMove += OnStartMove;
         _characterMotor.onStop += OnStop;
         _characterMotor.onDead += OnDead;
+
+        _currentHealth = _maxHealth;
+        _slider.maxValue = _maxHealth;
+    }
+
+    private void Update() {
+        _slider.value = _currentHealth;
     }
 
     private void OnDestroy() {
@@ -30,11 +51,19 @@ public class CharacterController : MonoBehaviour {
 
     private void OnStop() {
         _characterAttacker.Attack();
-        _characterMotor.Die();
     }
 
     private void OnDead() {
-        GameManager.instance.RemoveCharacter(this.gameObject);
+        _isDead = true;
+        GameManager.instance.RemoveCharacter(this);
+    }
+
+    public void TakeDamage(float amount) {
+        _currentHealth -= amount;
+
+        if (_currentHealth <= 0) {
+            _characterMotor.Die();
+        }
     }
 
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class CharacterMotor : MonoBehaviour {
 
     public Action onStartMove;
@@ -14,10 +15,10 @@ public class CharacterMotor : MonoBehaviour {
     private float _stoppingDistance = 3f;
     [SerializeField]
     private bool _isMoving = false;
-    [SerializeField]
-    private bool _isDead;
 
     private Transform _target;
+    private CharacterController _characterController;
+
     private Coroutine IMoveCoroutine;
     private Coroutine IDieCoroutine;
 
@@ -29,12 +30,9 @@ public class CharacterMotor : MonoBehaviour {
         get { return _isMoving; }
     }
 
-    public bool IsDead {
-        get { return _isDead; }
-    }
-
     private void Awake() {
         _target = GameManager.instance.Target;
+        _characterController = GetComponent<CharacterController>();
     }
 
     private IEnumerator IMove() {
@@ -60,7 +58,6 @@ public class CharacterMotor : MonoBehaviour {
 
     private IEnumerator IDie() {
         yield return new WaitForSeconds(2f);
-        _isDead = true;
 
         IDieCoroutine = null;
 
