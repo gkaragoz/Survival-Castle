@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3465368666218657454}
   - component: {fileID: 3465368666218657455}
   - component: {fileID: 3465368666218657456}
+  - component: {fileID: -8119769612124617579}
   m_Layer: 0
-  m_Name: Archer
+  m_Name: BasicArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,6 +76,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9511cda9401295468363036d1bc9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8119769612124617579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465368666218657453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daec9fc37deca844196ff1b05551040b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9013002802558816622

@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(CharacterMotor))]
+[RequireComponent(typeof(CharacterMotor), typeof(CharacterAttacker))]
 public class CharacterController : MonoBehaviour {
 
     private CharacterMotor _characterMotor;
+    private CharacterAttacker _characterAttacker;
 
     private void Awake() {
         _characterMotor = GetComponent<CharacterMotor>();
+        _characterAttacker = GetComponent<CharacterAttacker>();
 
         _characterMotor.onStartMove += OnStartMove;
         _characterMotor.onStop += OnStop;
@@ -27,11 +29,12 @@ public class CharacterController : MonoBehaviour {
     }
 
     private void OnStop() {
+        _characterAttacker.Attack();
         _characterMotor.Die();
     }
 
     private void OnDead() {
-        Destroy(this.gameObject, 8f);
+        Destroy(this.gameObject, 13f);
     }
 
 }
