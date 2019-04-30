@@ -1,27 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
     [SerializeField]
-    private GameObject _target;
-
-    private NavMeshAgent _agent;
     private Animator _animator;
+    [SerializeField]
+    private float _movementSpeed = 5f;
+    [SerializeField]
+    private float _stoppingDistance = 3f;
+
+    private Transform _target;
 
     private void Awake() {
-        _agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponentInChildren<Animator>();
-    }
-
-    private void Start() {
-        _agent.SetDestination(_target.transform.position);
+        _target = GameObject.FindGameObjectWithTag("Target").transform;
     }
 
     private void Update() {
-        _animator.SetFloat("Velocity", _agent.velocity.magnitude);
+        if (HasReachedDestination()) {
+            Stop();
+        } else {
+            MoveToTarget();
+        }
+    }
+
+    private void MoveToTarget() {
+
+        Vector3 desiredRotation = _target.position - transform.position;
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(desiredRotation), 0.1f);
+        transform.Translate(Vector3.forward * _movementSpeed * Time.deltaTime);
+
+        _animator.SetFloat("Velocity", 1f);
+    }
+
+    private void Stop() {
+        _animator.SetFloat("Velocity", 0f);
+    }
+
+    private bool HasReachedDestination() {
+        return Vector3.Distance(transform.position, _target.position) <= _stoppingDistance ? true : false;
     }
 
 }
