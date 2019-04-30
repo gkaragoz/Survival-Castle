@@ -34,7 +34,7 @@ public class CharacterMotor : MonoBehaviour {
     }
 
     private void Awake() {
-        _target = GameObject.FindGameObjectWithTag("Target").transform;
+        _target = GameManager.instance.Target;
     }
 
     private IEnumerator IMove() {

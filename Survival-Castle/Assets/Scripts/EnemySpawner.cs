@@ -9,12 +9,6 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     private GameObject _archerPrefab;
 
-    private Transform _target;
-
-    private void Awake() {
-        _target = GameObject.FindGameObjectWithTag("Target").transform;
-    }
-
     private void Start() {
         InvokeRepeating("Spawn", 1, _spawnRate);
     }
@@ -31,13 +25,9 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
-        if (_target == null) {
-            _target = GameObject.FindGameObjectWithTag("Target").transform;
-        }
-
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireSphere(_target.transform.position, radius);
+        Gizmos.DrawWireSphere(transform.transform.position, radius);
     }
 
 }
