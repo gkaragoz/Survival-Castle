@@ -34,7 +34,7 @@ public class CharacterController : MonoBehaviour {
     }
 
     private void OnDead() {
-        Destroy(this.gameObject, 13f);
+        GameManager.instance.RemoveCharacter(this.gameObject);
     }
 
 }

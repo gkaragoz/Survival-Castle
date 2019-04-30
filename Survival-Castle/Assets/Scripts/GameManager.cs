@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
@@ -17,7 +18,17 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Transform _target;
+    private List<GameObject> _enemies = new List<GameObject>();
 
     public Transform Target { get { return _target; } }
+
+    public void AddCharacter(GameObject enemy) {
+        _enemies.Add(enemy);
+    }
+
+    public void RemoveCharacter(GameObject enemy) {
+        _enemies.Remove(enemy);
+        Destroy(enemy, 2f);
+    }
 
 }
