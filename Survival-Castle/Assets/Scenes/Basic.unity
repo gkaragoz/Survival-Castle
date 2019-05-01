@@ -2918,8 +2918,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500cf0213e16a3648bc218b5dba86c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
-  _playBgMusic: 0
+  sounds:
+  - name: ArcadeGameMenuLoop
+    type: 1
+    clip: {fileID: 8300000, guid: 7004ea5388e5ee34185b45603ef52647, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 24300002, guid: a051388f2c83a804baa17b132669daab, type: 2}
+    source: {fileID: 0}
+  - name: SfxArrowRelease1
+    type: 0
+    clip: {fileID: 8300000, guid: eee204e6146816842a2b8570eebe9aaf, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxArrowRelease2
+    type: 0
+    clip: {fileID: 8300000, guid: ec7c3a4e018d5dc4b8d2c60dc02f675e, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxXBowArrowRelease
+    type: 0
+    clip: {fileID: 8300000, guid: bc56169321b6126438e199cc5c02c63d, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxSwordAttack1
+    type: 0
+    clip: {fileID: 8300000, guid: a33a209900bf52c40989ad453c34431c, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxSwordAttack2
+    type: 0
+    clip: {fileID: 8300000, guid: f3c579e1ccd02d549a095556174d537f, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxSwordAttack3
+    type: 0
+    clip: {fileID: 8300000, guid: aa30e6fb409c66448a7780decb2883cc, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxImpactFlesh1
+    type: 0
+    clip: {fileID: 8300000, guid: b419122f787c1bb45aeeecf1e36f6553, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxImpactFlesh2
+    type: 0
+    clip: {fileID: 8300000, guid: 6b020a09cb7c9074ab11d970ea525e77, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxEarnGolds
+    type: 0
+    clip: {fileID: 8300000, guid: 0c3e69a8c6cc39c41b99a1a4c3282404, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.2
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  _playBgMusic: 1
 --- !u!1 &1193858759
 GameObject:
   m_ObjectHideFlags: 0

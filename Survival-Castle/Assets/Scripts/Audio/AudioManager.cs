@@ -8,13 +8,11 @@ public class AudioManager : MonoBehaviour {
 
     public static AudioManager instance;
 
-    void Awake() {
+    private void Awake() {
         if (instance == null)
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-
-        DontDestroyOnLoad(instance);
     }
 
     #endregion
@@ -40,7 +38,7 @@ public class AudioManager : MonoBehaviour {
         }
 
         if (_playBgMusic) {
-            Play("MenuMusic");
+            Play("ArcadeGameMenuLoop");
         }
     }
 
