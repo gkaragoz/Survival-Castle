@@ -2922,7 +2922,7 @@ MonoBehaviour:
   - name: ArcadeGameMenuLoop
     type: 1
     clip: {fileID: 8300000, guid: 7004ea5388e5ee34185b45603ef52647, type: 3}
-    volume: 0.2
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -2932,7 +2932,7 @@ MonoBehaviour:
   - name: SfxArrowRelease1
     type: 0
     clip: {fileID: 8300000, guid: eee204e6146816842a2b8570eebe9aaf, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   - name: SfxArrowRelease2
     type: 0
     clip: {fileID: 8300000, guid: ec7c3a4e018d5dc4b8d2c60dc02f675e, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -2952,7 +2952,7 @@ MonoBehaviour:
   - name: SfxXBowArrowRelease
     type: 0
     clip: {fileID: 8300000, guid: bc56169321b6126438e199cc5c02c63d, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -2962,7 +2962,7 @@ MonoBehaviour:
   - name: SfxSwordAttack1
     type: 0
     clip: {fileID: 8300000, guid: a33a209900bf52c40989ad453c34431c, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -2972,7 +2972,7 @@ MonoBehaviour:
   - name: SfxSwordAttack2
     type: 0
     clip: {fileID: 8300000, guid: f3c579e1ccd02d549a095556174d537f, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -2982,7 +2982,7 @@ MonoBehaviour:
   - name: SfxSwordAttack3
     type: 0
     clip: {fileID: 8300000, guid: aa30e6fb409c66448a7780decb2883cc, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -2992,7 +2992,7 @@ MonoBehaviour:
   - name: SfxImpactFlesh1
     type: 0
     clip: {fileID: 8300000, guid: b419122f787c1bb45aeeecf1e36f6553, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -3002,7 +3002,7 @@ MonoBehaviour:
   - name: SfxImpactFlesh2
     type: 0
     clip: {fileID: 8300000, guid: 6b020a09cb7c9074ab11d970ea525e77, type: 3}
-    volume: 0.5
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.5
@@ -3922,7 +3922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRange: 20
-  _attackRate: 0.25
+  _attackRate: 1
   _attackDamage: 200
   _isAttacking: 0
 --- !u!1001 &2008786523

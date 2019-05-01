@@ -31,6 +31,8 @@ public class CharacterController : MonoBehaviour, IPooledObject {
         _isDead = true;
 
         onDead?.Invoke(this);
+
+        AudioManager.instance.Play("SfxEarnGolds");
     }
 
     public void StartMoving() {
@@ -55,6 +57,9 @@ public class CharacterController : MonoBehaviour, IPooledObject {
         if (_characterStats.GetCurrentHealth() <= 0) {
             Die();
         }
+
+        int randomFleshIndex = UnityEngine.Random.Range(1, 3);
+        AudioManager.instance.Play("SfxImpactFlesh" + randomFleshIndex);
 
         onTakeDamage?.Invoke();
     }
