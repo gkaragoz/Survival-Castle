@@ -69,7 +69,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: '<color=#93FF00>Sample Log '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 984ad2ddf99d4984797b5528517a0fc0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b68542155a662aa4894d04f2f16a15a2, type: 2}
   m_sharedMaterial: {fileID: -1273411660838292737, guid: 984ad2ddf99d4984797b5528517a0fc0,
     type: 2}
   m_fontSharedMaterials: []
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 6317229027483808668}

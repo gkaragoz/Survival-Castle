@@ -44,7 +44,7 @@ public class BaseTargetSelector : MonoBehaviour {
     }
 
     private IEnumerator ISearchTarget() {
-        //Debug.Log("Start searching target.");
+        //LogManager.instance.AddLog("[BASE] Start searching target.");
         _selectedTarget = null;
         _isSearchingTarget = true;
 
@@ -101,7 +101,7 @@ public class BaseTargetSelector : MonoBehaviour {
 
     public void StopSearchTarget() {
         _isSearchingTarget = false;
-        //Debug.Log("Stop searching target.");
+        //LogManager.instance.AddLog("[BASE] Stop searching target.");
 
         onSearchTargetStopped?.Invoke();
     }

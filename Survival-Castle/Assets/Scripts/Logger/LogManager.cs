@@ -17,9 +17,17 @@ public class LogManager : MonoBehaviour {
 
     #endregion
 
-    public Color logColor, exceptionColor, errorColor, assertColor, warningColor;
-    public GameObject chatContainer;
-    public GameObject logTextPrefab;
+    [Header("Initialization")]
+    [SerializeField]
+    private GameObject _chatContainer;
+    [SerializeField]
+    private GameObject _logTextPrefab;
+
+    [Header("Settings")]
+    [SerializeField]
+    private Color _logColor, _exceptionColor, _errorColor, _assertColor, _warningColor;
+    [SerializeField]
+    private bool _isSystemOn = false;
 
     private Queue<Log> _logs = new Queue<Log>();
 
@@ -32,6 +40,10 @@ public class LogManager : MonoBehaviour {
     }
 
     public void AddLog(string message, LogType type = LogType.Log) {
+        if (!_isSystemOn) {
+            return;
+        }
+
         Log log = CreateLogObject(message, type);
 
         _logs.Enqueue(log);
@@ -48,23 +60,23 @@ public class LogManager : MonoBehaviour {
     }
 
     private Color GetLogColor(LogType type) {
-        Color color = logColor;
+        Color color = _logColor;
 
         switch (type) {
             case LogType.Error:
-                color = errorColor;
+                color = _errorColor;
                 break;
             case LogType.Assert:
-                color = assertColor;
+                color = _assertColor;
                 break;
             case LogType.Warning:
-                color = warningColor;
+                color = _warningColor;
                 break;
             case LogType.Log:
-                color = logColor;
+                color = _logColor;
                 break;
             case LogType.Exception:
-                color = exceptionColor;
+                color = _exceptionColor;
                 break;
         }
 
@@ -74,7 +86,7 @@ public class LogManager : MonoBehaviour {
     private Log CreateLogObject(string message, LogType type) {
         string colorStringHEX = "#" + ColorUtility.ToHtmlStringRGB(GetLogColor(type));
 
-        Log log = Instantiate(logTextPrefab, chatContainer.transform).GetComponent<Log>();
+        Log log = Instantiate(_logTextPrefab, _chatContainer.transform).GetComponent<Log>();
         log.Init(
             message,
             DateTime.Now,

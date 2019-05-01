@@ -42,7 +42,7 @@ public class PanelDebug : MonoBehaviour {
         _txtBaseTargetSearcherRate.text = "BASE TARGET SEARCH RATE: \t" + _baseController.SearchRate.ToString() + " (sec)";
         _txtBaseAttackRate.text = "BASE ATTACK RATE: \t\t\t" + _baseController.AttackRate.ToString() + " (sec)";
         _txtBaseAttackDamage.text = "BASE ATTACK DAMAGE: \t\t" + _baseController.AttackDamage.ToString();
-        _txtBaseAttackRange.text = "BASE ATTACK RANGE: \t\t" + _baseController.AttackRange.ToString() + " (m)";
+        _txtBaseAttackRange.text = "BASE ATTACK RANGE: \t\t\t" + _baseController.AttackRange.ToString() + " (m)";
     }
 
     public void OnClick_BtnSpawner() {

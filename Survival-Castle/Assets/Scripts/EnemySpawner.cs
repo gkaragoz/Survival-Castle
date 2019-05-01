@@ -28,6 +28,8 @@ public class EnemySpawner : MonoBehaviour {
     private void Spawn() {
         GameObject newArcher = Instantiate(_archerPrefab, RandomPointOnCircleEdge(radius), Quaternion.identity, transform);
         EnemyAIController.instance.AddCharacter(newArcher.GetComponent<CharacterController>());
+
+        LogManager.instance.AddLog("[SPAWNER] " + newArcher.name + " has been spawned.");
     }
 
     private Vector3 RandomPointOnCircleEdge(float radius) {
@@ -47,10 +49,13 @@ public class EnemySpawner : MonoBehaviour {
             return;
         }
 
+        LogManager.instance.AddLog("[SPAWNER] Set to on.");
         InvokeRepeating("Spawn", 1, _spawnRate);
     }
 
     public void StopSpawning() {
+        LogManager.instance.AddLog("[SPAWNER] Set to off.");
+
         CancelInvoke("Spawn");
     }
 
