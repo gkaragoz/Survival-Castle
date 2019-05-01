@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAIController : MonoBehaviour {
@@ -23,14 +22,17 @@ public class EnemyAIController : MonoBehaviour {
     [SerializeField]
     private bool _isRunning = false;
 
-    private List<CharacterController> _enemies = new List<CharacterController>();
-    public List<CharacterController> Enemies { get { return _enemies; } }
+    [Header("Debug")]
+    [SerializeField]
+    [Utils.ReadOnly]
+    private CharacterController[] _enemies;
+    public CharacterController[] Enemies { get { return _enemies; } }
     public float Tickrate { get { return _tickRate; } }
 
     private Coroutine IControllingProcessCoroutine;
 
     private void StartAllMovements() {
-        int enemiesCount = _enemies.Count;
+        int enemiesCount = _enemies.Length;
 
         for (int ii = 0; ii < enemiesCount; ii++) {
             _enemies[ii].StartMoving();
@@ -38,7 +40,7 @@ public class EnemyAIController : MonoBehaviour {
     }
 
     private void StopAllMovements() {
-        int enemiesCount = _enemies.Count;
+        int enemiesCount = _enemies.Length;
 
         for (int ii = 0; ii < enemiesCount; ii++) {
             _enemies[ii].StopMoving();
@@ -46,7 +48,7 @@ public class EnemyAIController : MonoBehaviour {
     }
 
     private void StartAttacks() {
-        int enemiesCount = _enemies.Count;
+        int enemiesCount = _enemies.Length;
 
         for (int ii = 0; ii < enemiesCount; ii++) {
             _enemies[ii].StartAttacking();
@@ -54,7 +56,7 @@ public class EnemyAIController : MonoBehaviour {
     }
 
     private void StopAllAttacks() {
-        int enemiesCount = _enemies.Count;
+        int enemiesCount = _enemies.Length;
 
         for (int ii = 0; ii < enemiesCount; ii++) {
             _enemies[ii].StopAttacking();
@@ -62,37 +64,48 @@ public class EnemyAIController : MonoBehaviour {
     }
 
     private IEnumerator IControllingProcess() {
-        StartAllMovements();
-
         while (_isRunning) {
             yield return new WaitForSeconds(_tickRate);
 
-            for (int ii = 0; ii < _enemies.Count; ii++) {
+            for (int ii = 0; ii < _enemies.Length; ii++) {
                 CharacterController agent = _enemies[ii];
 
-                // If target has reached to his destination, then Stop Moving && Start Attacking.
-                if (agent.HasReachedDestination) {
-                    agent.StopMoving();
-                    agent.StartAttacking();
+                // If target is not active, skip it.
+                if (!agent.gameObject.activeInHierarchy) {
                     continue;
                 }
 
-                // If target is dead, even he is reached to his destination, just stop moving!
+                // If target is dead, maybe we can skipt it!
                 if (agent.IsDead) {
-                    agent.StopMoving();
+                    // If it is moving, stop moving
+                    if (agent.IsMoving) {
+                        agent.StopMoving();
+                    }
 
-                    // In that situation, if it is attacking, stop it!
+                    // If it is attacking, stop it!
                     if (agent.IsAttacking) {
                         agent.StopAttacking();
                     }
+                    continue;
+                }
 
+                // If target has reached to his destination, then Stop Moving && Start Attacking.
+                if (agent.HasReachedDestination) {
+                    // If it is moving, stop moving. We're gonna fight.
+                    if (agent.IsMoving) {
+                        agent.StopMoving();
+                    }
+
+                    // If it is already attacking, just skip it.
+                    if (!agent.IsAttacking) {
+                        agent.StartAttacking();
+                    }
                     continue;
                 }
 
                 // If target is not dead, has not reached to his destination, go, start movement!
                 if (!agent.IsMoving) {
                     agent.StartMoving();
-
                     continue;
                 }
             }
@@ -104,16 +117,15 @@ public class EnemyAIController : MonoBehaviour {
         yield break;
     }
 
-    public void AddCharacter(CharacterController enemy) {
-        _enemies.Add(enemy);
-        enemy.onDead += RemoveCharacter;
-    }
+    public void Initialize() {
+        GameObject[] enemyObjs = ObjectPooler.instance.GetGameObjectsOnPool("BasicArcher");
+        _enemies = new CharacterController[enemyObjs.Length];
 
-    public void RemoveCharacter(CharacterController enemy) {
-        _enemies.Remove(enemy);
-        enemy.onDead -= RemoveCharacter;
+        for (int ii = 0; ii < enemyObjs.Length; ii++) {
+            _enemies[ii] = enemyObjs[ii].GetComponent<CharacterController>();
+        }
 
-        Destroy(enemy.gameObject, 2f);
+        LogManager.instance.AddLog("[AI]" + " has been initialized.");
     }
 
     public void StartControl() {

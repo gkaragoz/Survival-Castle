@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class PanelDebug : MonoBehaviour {
 
     [SerializeField]
-    private TextMeshProUGUI _txtEnemyCount;
-    [SerializeField]
     private TextMeshProUGUI _txtAITickrate;
     [SerializeField]
     private TextMeshProUGUI _txtBaseTargetSearcherRate;
@@ -37,7 +35,6 @@ public class PanelDebug : MonoBehaviour {
     private bool _isAIController = false;
 
     private void Update() {
-        _txtEnemyCount.text = "ENEMY COUNT: \t\t\t\t" + EnemyAIController.instance.Enemies.Count.ToString();
         _txtAITickrate.text = "AI BRAIN TICK RATE: \t\t\t" + EnemyAIController.instance.Tickrate.ToString() + " (sec)";
         _txtBaseTargetSearcherRate.text = "BASE TARGET SEARCH RATE: \t" + _baseController.SearchRate.ToString() + " (sec)";
         _txtBaseAttackRate.text = "BASE ATTACK RATE: \t\t\t" + _baseController.AttackRate.ToString() + " (sec)";

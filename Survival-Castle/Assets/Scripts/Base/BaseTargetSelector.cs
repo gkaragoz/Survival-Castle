@@ -69,7 +69,7 @@ public class BaseTargetSelector : MonoBehaviour {
     }
 
     private void SelectClosestTarget() {
-        int enemyCount = EnemyAIController.instance.Enemies.Count;
+        int enemyCount = EnemyAIController.instance.Enemies.Length;
         if (enemyCount <= 0) {
             return;
         }

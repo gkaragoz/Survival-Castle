@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterMotor), typeof(CharacterAttacker))]
-public class CharacterController : MonoBehaviour {
+public class CharacterController : MonoBehaviour, IPooledObject {
 
     public Action<CharacterController> onDead;
     public Action onTakeDamage;
@@ -58,6 +57,10 @@ public class CharacterController : MonoBehaviour {
         }
 
         onTakeDamage?.Invoke();
+    }
+
+    public void OnObjectReused() {
+
     }
 
 }

@@ -20,8 +20,12 @@ public class BaseController : MonoBehaviour {
         _baseAttacker = GetComponent<BaseAttacker>();
     }
 
-    private void Start() {
+    public void StartSearchTarget() {
         _baseTargetSelector.StartSearchTarget();
+    }
+
+    public void StopSearchTarget() {
+        _baseTargetSelector.StopSearchTarget();
     }
 
 }

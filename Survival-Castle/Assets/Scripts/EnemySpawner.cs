@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour {
 
     [Header("Initializations")]
     [SerializeField]
-    private GameObject _archerPrefab;
+    private string BASIC_ARCHER = "BasicArcher";
 
     [Header("Settings")]
     [SerializeField]
@@ -26,8 +26,9 @@ public class EnemySpawner : MonoBehaviour {
     private float radius = 10f;
 
     private void Spawn() {
-        GameObject newArcher = Instantiate(_archerPrefab, RandomPointOnCircleEdge(radius), Quaternion.identity, transform);
-        EnemyAIController.instance.AddCharacter(newArcher.GetComponent<CharacterController>());
+        GameObject newArcher = ObjectPooler.instance.SpawnFromPool(BASIC_ARCHER);
+        newArcher.transform.position = RandomPointOnCircleEdge(radius);
+        newArcher.transform.rotation = Quaternion.identity;
 
         LogManager.instance.AddLog("[SPAWNER] " + newArcher.name + " has been spawned.");
     }
