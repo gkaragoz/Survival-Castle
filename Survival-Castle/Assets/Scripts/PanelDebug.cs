@@ -25,6 +25,10 @@ public class PanelDebug : MonoBehaviour {
     private Button _btnAIController;
     [SerializeField]
     private TextMeshProUGUI _txtAIController;
+    [SerializeField]
+    private Color _startColor;
+    [SerializeField]
+    private Color _stopColor;
 
     [SerializeField]
     private BaseController _baseController;
@@ -46,11 +50,11 @@ public class PanelDebug : MonoBehaviour {
 
         if (_isSpawnerStarted) {
             _txtSpawner.text = "STOP";
-            _btnSpawner.GetComponent<Image>().color = Color.red; 
+            _btnSpawner.GetComponent<Image>().color = _stopColor; 
             EnemySpawner.instance.StartSpawning();
         } else {
             _txtSpawner.text = "START";
-            _btnSpawner.GetComponent<Image>().color = Color.green; 
+            _btnSpawner.GetComponent<Image>().color = _startColor; 
             EnemySpawner.instance.StopSpawning();
         }
     }
@@ -60,11 +64,11 @@ public class PanelDebug : MonoBehaviour {
 
         if (_isAIController) {
             _txtAIController.text = "STOP";
-            _btnAIController.GetComponent<Image>().color = Color.red;
+            _btnAIController.GetComponent<Image>().color = _stopColor;
             EnemyAIController.instance.StartControl();
         } else {
             _txtAIController.text = "START";
-            _btnAIController.GetComponent<Image>().color = Color.green;
+            _btnAIController.GetComponent<Image>().color = _startColor;
             EnemyAIController.instance.StopControl();
         }
     }
