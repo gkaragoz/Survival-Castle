@@ -21,27 +21,27 @@ public class CharacterAnimation : MonoBehaviour {
         _characterAttacker = GetComponent<CharacterAttacker>();
 
         _characterMotor.onStartMove += OnStartMove;
-        _characterMotor.onStop += OnStop;
+        _characterMotor.onStopMove += OnStopMove;
         _characterController.onDead += OnDead;
-        _characterAttacker.onAttack += OnAttack;
+        _characterAttacker.onAttacking += OnAttacking;
     }
 
     private void OnDestroy() {
         _characterMotor.onStartMove -= OnStartMove;
-        _characterMotor.onStop -= OnStop;
+        _characterMotor.onStopMove -= OnStopMove;
         _characterController.onDead -= OnDead;
-        _characterAttacker.onAttack -= OnAttack;
+        _characterAttacker.onAttacking -= OnAttacking;
     }
 
     public void OnStartMove() {
         _animator.SetBool(RUN, true);
     }
 
-    public void OnStop() {
+    public void OnStopMove() {
         _animator.SetBool(RUN, false);
     }
 
-    public void OnAttack() {
+    public void OnAttacking() {
         _animator.SetTrigger(ATTACK);
     }
 

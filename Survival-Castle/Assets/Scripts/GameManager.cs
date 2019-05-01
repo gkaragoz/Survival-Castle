@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
@@ -19,21 +17,31 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Transform _target;
-    private List<CharacterController> _enemies = new List<CharacterController>();
+
+    private EnemySpawner _enemySpawner;
 
     public Transform Target { get { return _target; } }
-    public List<CharacterController> Enemies { get { return _enemies; } }
 
-    public void AddCharacter(CharacterController enemy) {
-        _enemies.Add(enemy);
-        enemy.onDead += RemoveCharacter;
+    private void Start() {
+        _enemySpawner = GetComponent<EnemySpawner>();
     }
 
-    public void RemoveCharacter(CharacterController enemy) {
-        _enemies.Remove(enemy);
-        enemy.onDead -= RemoveCharacter;
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            _enemySpawner.StartSpawning();
+        } 
 
-        Destroy(enemy.gameObject, 2f);
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            _enemySpawner.StopSpawning();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            EnemyAIController.instance.StartControl();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E)) {
+            EnemyAIController.instance.StopControl();
+        }
     }
 
 }

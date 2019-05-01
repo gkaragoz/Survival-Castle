@@ -8,13 +8,17 @@ public class BaseAttacker : MonoBehaviour {
     public Action onAttackStarted;
     public Action onAttackStopped;
 
+    [Header("Settings")]
     [SerializeField]
     private float _attackRange = 20f;
     [SerializeField]
     private float _attackRate = 0.5f;
     [SerializeField]
     private float _attackDamage = 50f;
+
+    [Header("Debug")]
     [SerializeField]
+    [Utils.ReadOnly]
     private bool _isAttacking = false;
 
     private BaseTargetSelector _baseTargetSelector;

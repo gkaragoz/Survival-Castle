@@ -5,17 +5,22 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController), typeof(CharacterMotor))]
 public class CharacterAttacker : MonoBehaviour {
 
-    public Action onAttack;
+    public Action onAttacking;
 
+    [Header("Settings")]
     [SerializeField]
     private float _attackRate = 1f;
+
+    [Header("Debug")]
     [SerializeField]
+    [Utils.ReadOnly]
+    private float _nextAttack = 0;
+    [SerializeField]
+    [Utils.ReadOnly]
     private bool _isAttacking;
 
     private CharacterController _characterController;
     private CharacterMotor _characterMotor;
-
-    private Coroutine IAttackCoroutine;
 
     private void Awake() {
         _characterController = GetComponent<CharacterController>();
@@ -26,32 +31,29 @@ public class CharacterAttacker : MonoBehaviour {
         get { return _isAttacking; }
     }
 
-    private IEnumerator IAttack() {
+    private void Update() {
+        if (_isAttacking) {
+            Attack();
+        }
+    }
+
+    private void Attack() {
         _isAttacking = true;
 
-        while (_isAttacking) {
-            yield return new WaitForSeconds(1f);
-
-            if (_characterController.IsDead) {
-                Stop();
-                break;
-            }
-
-            onAttack?.Invoke();
+        if (Time.time <= _nextAttack) {
+            return;
         }
 
-        yield return null;
+        _nextAttack = Time.time + _attackRate;
+
+        onAttacking?.Invoke();
     }
 
-    public void Attack() {
-        if (IAttackCoroutine == null) {
-            IAttackCoroutine = StartCoroutine(IAttack());
-        }
-
-        onAttack?.Invoke();
+    public void StartAttacking() {
+        _isAttacking = true;
     }
 
-    public void Stop() {
+    public void StopAttacking() {
         _isAttacking = false;
     }
 

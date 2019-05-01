@@ -6,20 +6,21 @@ using UnityEngine;
 public class CharacterMotor : MonoBehaviour {
 
     public Action onStartMove;
-    public Action onStop;
+    public Action onStopMove;
 
+    [Header("Settings")]
     [SerializeField]
     private float _movementSpeed = 5f;
     [SerializeField]
     private float _stoppingDistance = 3f;
+
+    [Header("Debug")]
     [SerializeField]
+    [Utils.ReadOnly]
     private bool _isMoving = false;
 
     private Transform _target;
     private CharacterController _characterController;
-
-    private Coroutine IMoveCoroutine;
-    private Coroutine IDieCoroutine;
 
     public bool HasReachedDestination {
         get { return Vector3.Distance(transform.position, _target.position) <= _stoppingDistance ? true : false; }
@@ -34,30 +35,17 @@ public class CharacterMotor : MonoBehaviour {
         _characterController = GetComponent<CharacterController>();
     }
 
-    private IEnumerator IMove() {
+    private void Update() {
+        if (_isMoving) {
+            Move();
+        }
+    }
+
+    private void Move() {
         _isMoving = true;
 
-        onStartMove?.Invoke();
-
-        while (_isMoving) {
-            if (HasReachedDestination) {
-                Stop();
-                break;
-            }
-
-            if (_characterController.IsDead) {
-                Stop();
-                break;
-            }
-
-            LookToTarget();
-            transform.Translate(Vector3.forward * _movementSpeed * Time.fixedDeltaTime);
-            yield return new WaitForFixedUpdate();
-        }
-
-        IMoveCoroutine = null;
-
-        yield return null;
+        LookToTarget();
+        transform.Translate(Vector3.forward * _movementSpeed * Time.fixedDeltaTime);
     }
 
     private void LookToTarget() {
@@ -65,16 +53,16 @@ public class CharacterMotor : MonoBehaviour {
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(desiredRotation), 0.1f);
     }
 
-    public void Move() {
-        if (IMoveCoroutine == null) {
-            IMoveCoroutine = StartCoroutine(IMove());
-        }
+    public void StartMoving() {
+        _isMoving = true;
+
+        onStartMove?.Invoke();
     }
 
-    public void Stop() {
+    public void StopMoving() {
         _isMoving = false;
 
-        onStop?.Invoke();
+        onStopMove?.Invoke();
     }
 
 }

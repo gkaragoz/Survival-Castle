@@ -12,40 +12,42 @@ public class CharacterController : MonoBehaviour {
     private CharacterAttacker _characterAttacker;
     private Character _characterStats;
 
+    [Header("Debug")]
     [SerializeField]
+    [Utils.ReadOnly]
     private bool _isDead = false;
 
     public bool IsDead { get { return _isDead; } }
+    public bool HasReachedDestination { get { return _characterMotor.HasReachedDestination; } }
+    public bool IsAttacking { get { return _characterAttacker.IsAttacking; } }
+    public bool IsMoving { get { return _characterMotor.IsMoving; } }
 
     private void Awake() {
         _characterMotor = GetComponent<CharacterMotor>();
         _characterAttacker = GetComponent<CharacterAttacker>();
         _characterStats = GetComponent<Character>();
-
-        _characterMotor.onStartMove += OnStartMove;
-        _characterMotor.onStop += OnStop;
-    }
-
-    private void OnDestroy() {
-        _characterMotor.onStartMove -= OnStartMove;
-        _characterMotor.onStop -= OnStop;
-    }
-
-    private void Start() {
-        _characterMotor.Move();
-    }
-
-    private void OnStartMove() {
-    }
-
-    private void OnStop() {
-        _characterAttacker.Attack();
     }
 
     private void Die() {
         _isDead = true;
 
         onDead?.Invoke(this);
+    }
+
+    public void StartMoving() {
+        _characterMotor.StartMoving();
+    }
+    
+    public void StopMoving() {
+        _characterMotor.StopMoving();
+    }
+
+    public void StartAttacking() {
+        _characterAttacker.StartAttacking();
+    }
+
+    public void StopAttacking() {
+        _characterAttacker.StopAttacking();
     }
 
     public void TakeDamage(float amount) {

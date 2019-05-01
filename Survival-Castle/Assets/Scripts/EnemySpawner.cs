@@ -2,20 +2,19 @@
 
 public class EnemySpawner : MonoBehaviour {
 
+    [Header("Initializations")]
+    [SerializeField]
+    private GameObject _archerPrefab;
+
+    [Header("Settings")]
     [SerializeField]
     private float _spawnRate = 2f;
     [SerializeField]
     private float radius = 10f;
-    [SerializeField]
-    private GameObject _archerPrefab;
-
-    private void Start() {
-        InvokeRepeating("Spawn", 1, _spawnRate);
-    }
 
     private void Spawn() {
         GameObject newArcher = Instantiate(_archerPrefab, RandomPointOnCircleEdge(radius), Quaternion.identity, transform);
-        GameManager.instance.AddCharacter(newArcher.GetComponent<CharacterController>());
+        EnemyAIController.instance.AddCharacter(newArcher.GetComponent<CharacterController>());
     }
 
     private Vector3 RandomPointOnCircleEdge(float radius) {
@@ -28,6 +27,14 @@ public class EnemySpawner : MonoBehaviour {
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(transform.transform.position, radius);
+    }
+
+    public void StartSpawning() {
+        InvokeRepeating("Spawn", 1, _spawnRate);
+    }
+
+    public void StopSpawning() {
+        CancelInvoke("Spawn");
     }
 
 }

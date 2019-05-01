@@ -9,11 +9,16 @@ public class BaseTargetSelector : MonoBehaviour {
     public Action onSearchTargetStopped;
     public Action onTargetSelected;
 
+    [Header("Settings")]
     [SerializeField]
     private float _searchRate = 0.5f;
+
+    [Header("Debug")]
     [SerializeField]
+    [Utils.ReadOnly]
     private CharacterController _selectedTarget;
     [SerializeField]
+    [Utils.ReadOnly]
     private bool _isSearchingTarget = false;
 
     private BaseAttacker _baseAttacker;
@@ -63,16 +68,16 @@ public class BaseTargetSelector : MonoBehaviour {
     }
 
     private void SelectClosestTarget() {
-        int enemyCount = GameManager.instance.Enemies.Count;
+        int enemyCount = EnemyAIController.instance.Enemies.Count;
         if (enemyCount <= 0) {
             return;
         }
 
-        CharacterController closestTarget = GameManager.instance.Enemies[0];
+        CharacterController closestTarget = EnemyAIController.instance.Enemies[0];
         float distance = Vector3.Distance(transform.position, closestTarget.transform.position);
 
         for (int ii = 1; ii < enemyCount; ii++) {
-            CharacterController potantialTarget = GameManager.instance.Enemies[ii];
+            CharacterController potantialTarget = EnemyAIController.instance.Enemies[ii];
             if (potantialTarget.IsDead) {
                 continue;
             }
