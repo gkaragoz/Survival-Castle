@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController), typeof(Character))]
-public class CharacterUI : MonoBehaviour {
+public class CharacterUI : Menu {
 
     [SerializeField]
     private Slider _slider;
@@ -15,10 +15,12 @@ public class CharacterUI : MonoBehaviour {
         _characterStats = GetComponent<Character>();
 
         _characterController.onTakeDamage += OnTakeDamage;
+        _characterController.onDead += OnDead;
     }
 
     private void OnDestroy() {
         _characterController.onTakeDamage -= OnTakeDamage;
+        _characterController.onDead -= OnDead;
     }
 
     private void Start() {
@@ -28,6 +30,10 @@ public class CharacterUI : MonoBehaviour {
 
     private void OnTakeDamage() {
         _slider.value = _characterStats.GetCurrentHealth();
+    }
+
+    private void OnDead(CharacterController characterController) {
+        Hide();
     }
 
 }
