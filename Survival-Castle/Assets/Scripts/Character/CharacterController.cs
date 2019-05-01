@@ -6,17 +6,11 @@ using UnityEngine.UI;
 public class CharacterController : MonoBehaviour {
 
     public Action<CharacterController> onDead;
-
-    [SerializeField]
-    private float _currentHealth;
-    [SerializeField]
-    private float _maxHealth;
-
-    [SerializeField]
-    private Slider _slider;
+    public Action onTakeDamage;
 
     private CharacterMotor _characterMotor;
     private CharacterAttacker _characterAttacker;
+    private Character _characterStats;
 
     [SerializeField]
     private bool _isDead = false;
@@ -26,16 +20,10 @@ public class CharacterController : MonoBehaviour {
     private void Awake() {
         _characterMotor = GetComponent<CharacterMotor>();
         _characterAttacker = GetComponent<CharacterAttacker>();
+        _characterStats = GetComponent<Character>();
 
         _characterMotor.onStartMove += OnStartMove;
         _characterMotor.onStop += OnStop;
-
-        _currentHealth = _maxHealth;
-        _slider.maxValue = _maxHealth;
-    }
-
-    private void Update() {
-        _slider.value = _currentHealth;
     }
 
     private void OnDestroy() {
@@ -61,11 +49,13 @@ public class CharacterController : MonoBehaviour {
     }
 
     public void TakeDamage(float amount) {
-        _currentHealth -= amount;
+        _characterStats.DecreaseHealth(amount);
 
-        if (_currentHealth <= 0) {
+        if (_characterStats.GetCurrentHealth() <= 0) {
             Die();
         }
+
+        onTakeDamage?.Invoke();
     }
 
 }
