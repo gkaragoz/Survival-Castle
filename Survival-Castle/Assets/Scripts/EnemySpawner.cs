@@ -2,6 +2,19 @@
 
 public class EnemySpawner : MonoBehaviour {
 
+    #region Singleton
+
+    public static EnemySpawner instance;
+
+    void Awake() {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
+    #endregion
+
     [Header("Initializations")]
     [SerializeField]
     private GameObject _archerPrefab;
@@ -30,6 +43,10 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     public void StartSpawning() {
+        if (IsInvoking("Spawn")) {
+            return;
+        }
+
         InvokeRepeating("Spawn", 1, _spawnRate);
     }
 

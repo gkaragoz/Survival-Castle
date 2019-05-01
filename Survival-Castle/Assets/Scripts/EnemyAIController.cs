@@ -25,6 +25,7 @@ public class EnemyAIController : MonoBehaviour {
 
     private List<CharacterController> _enemies = new List<CharacterController>();
     public List<CharacterController> Enemies { get { return _enemies; } }
+    public float Tickrate { get { return _tickRate; } }
 
     private Coroutine IControllingProcessCoroutine;
 

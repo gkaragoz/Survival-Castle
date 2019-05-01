@@ -27,6 +27,7 @@ public class BaseTargetSelector : MonoBehaviour {
     public bool IsSearchingTarget { get { return _isSearchingTarget; } }
     public bool HasTarget { get { return _selectedTarget == null ? false : true; } }
     public CharacterController SelectedTarget { get { return _selectedTarget; } }
+    public float SearchRate { get { return _searchRate; } }
 
     private void Awake() {
         _baseAttacker = GetComponent<BaseAttacker>();

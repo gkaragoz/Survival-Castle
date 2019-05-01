@@ -25,6 +25,9 @@ public class BaseAttacker : MonoBehaviour {
     private Coroutine IAttackCoroutine;
 
     public bool IsAttacking { get { return _isAttacking; } }
+    public float AttackRange { get { return _attackRange; } }
+    public float AttackRate { get { return _attackRange; } }
+    public float AttackDamage { get { return _attackDamage; } }
 
     private void Awake() {
         _baseTargetSelector = GetComponent<BaseTargetSelector>();
