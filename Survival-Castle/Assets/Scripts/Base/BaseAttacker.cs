@@ -37,7 +37,7 @@ public class BaseAttacker : MonoBehaviour {
     }
 
     private IEnumerator IAttack() {
-        Debug.Log("Start attacking to target.");
+        //Debug.Log("Start attacking to target.");
         _isAttacking = true;
 
         onAttackStarted?.Invoke();
@@ -50,7 +50,7 @@ public class BaseAttacker : MonoBehaviour {
             }
 
             if (IsTargetInRange()) {
-                Debug.Log("Attacking to: " + _baseTargetSelector.SelectedTarget);
+                //Debug.Log("Attacking to: " + _baseTargetSelector.SelectedTarget);
                 _baseTargetSelector.SelectedTarget.TakeDamage(_attackDamage);
             }
         }
@@ -77,7 +77,7 @@ public class BaseAttacker : MonoBehaviour {
     }
 
     public void StopAttack() {
-        Debug.Log("Stop attacking.");
+        //Debug.Log("Stop attacking.");
         _isAttacking = false;
 
         onAttackStopped?.Invoke();
