@@ -11,6 +11,8 @@ public class BaseTargetSelector : MonoBehaviour {
 
     [Header("Settings")]
     [SerializeField]
+    private bool _isLocked = false;
+    [SerializeField]
     private float _searchRate = 0.5f;
 
     [Header("Debug")]
@@ -51,6 +53,10 @@ public class BaseTargetSelector : MonoBehaviour {
 
         while (_isSearchingTarget) {
             yield return new WaitForSeconds(_searchRate);
+
+            if (_isLocked) {
+                continue;
+            }
 
             if (!HasTarget) {
                 SelectClosestTarget();

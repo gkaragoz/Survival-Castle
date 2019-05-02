@@ -16,6 +16,8 @@ public class BaseAttacker : MonoBehaviour {
 
     [Header("Settings")]
     [SerializeField]
+    private bool _isLocked = false;
+    [SerializeField]
     private float _attackRange = 20f;
     [SerializeField]
     private float _attackRate = 0.5f;
@@ -62,6 +64,10 @@ public class BaseAttacker : MonoBehaviour {
 
         while (_isAttacking) {
             yield return new WaitForSeconds(_attackRate);
+            if (_isLocked) {
+                continue;
+            }
+
             if (_selectedTarget == null) {
                 StopAttack();
                 break;
@@ -102,6 +108,8 @@ public class BaseAttacker : MonoBehaviour {
 
         // Force for apply to projectile.
         projectile.AddForce(forceVector, ForceMode.VelocityChange);
+
+        AudioManager.instance.Play("SfxArrowRelease" + UnityEngine.Random.Range(1, 3));
     }
 
     private void RenderArc(Vector3 targetPosition) {

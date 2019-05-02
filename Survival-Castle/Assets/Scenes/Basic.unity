@@ -4059,6 +4059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04df118967aebf8478389ab1c424026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isLocked: 0
   _searchRate: 0.5
   _selectedTarget: {fileID: 0}
   _isSearchingTarget: 0
@@ -4077,6 +4078,7 @@ MonoBehaviour:
   _projectileRB: {fileID: 222426686593152983, guid: c9fadd3e9b4de5446b58073ed5c755c7,
     type: 3}
   _projectileArcArray: {fileID: 551448617}
+  _isLocked: 0
   _attackRange: 20
   _attackRate: 1
   _attackDamage: 200
