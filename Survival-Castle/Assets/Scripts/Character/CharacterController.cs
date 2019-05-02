@@ -68,4 +68,13 @@ public class CharacterController : MonoBehaviour, IPooledObject {
 
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "Projectile") {
+            Projectile projectile = other.GetComponent<Projectile>();
+            TakeDamage(projectile.Damage);
+
+            Destroy(other.gameObject, 1f);
+        }
+    }
+
 }

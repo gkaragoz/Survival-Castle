@@ -10,7 +10,7 @@ public class BaseAttacker : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private Rigidbody _projectileRB;
+    private Projectile _arrowProjectile;
 
     [Header("Settings")]
     [SerializeField]
@@ -101,11 +101,14 @@ public class BaseAttacker : MonoBehaviour {
 
     private void Attack() {
         Vector3 targetPosition = _selectedTarget.transform.position;
-        Rigidbody projectile = Instantiate(_projectileRB, transform.position, Quaternion.identity);
+        Projectile projectile = Instantiate(_arrowProjectile, transform.position, Quaternion.identity);
         Vector3 forceVector = HelperArcProjectile.MagicShoot(_shootAngle, targetPosition, transform.position);
 
+        // Set projectile damage.
+        projectile.Damage = AttackDamage;
+
         // Force for apply to projectile.
-        projectile.AddForce(forceVector, ForceMode.VelocityChange);
+        projectile.AddForce(forceVector);
 
         AudioManager.instance.Play("SfxArrowRelease" + UnityEngine.Random.Range(1, 3));
     }

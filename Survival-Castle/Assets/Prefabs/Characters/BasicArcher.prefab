@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 3465368666218657455}
   - component: {fileID: -8119769612124617579}
   - component: {fileID: -4921319793224782084}
+  - component: {fileID: 778865604}
   m_Layer: 0
   m_Name: BasicArcher
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +128,19 @@ MonoBehaviour:
   container: {fileID: 2508781786682758211}
   subContainer: {fileID: 0}
   _slider: {fileID: 2508781786682758221}
+--- !u!65 &778865604
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465368666218657453}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!82 &3141966805654131279
 AudioSource:
   m_ObjectHideFlags: 0
@@ -440,16 +454,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1353206133541978627, guid: 2a14609f772a8b5438333ef93849fdd3,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1353206133541978627, guid: 2a14609f772a8b5438333ef93849fdd3,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1353206133673455842, guid: 2a14609f772a8b5438333ef93849fdd3,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -597,13 +601,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9562770, guid: 29ace7c48ff625f46a34b30937e67326, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9562770, guid: 29ace7c48ff625f46a34b30937e67326, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ed24c76e90cb63f48a9710e4eda4d6c3, type: 2}
+    - target: {fileID: 9562770, guid: 29ace7c48ff625f46a34b30937e67326, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29ace7c48ff625f46a34b30937e67326, type: 3}
 --- !u!1 &7982026867252045091 stripped
