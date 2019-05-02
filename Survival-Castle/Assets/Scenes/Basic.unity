@@ -2997,16 +2997,6 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: SfxArrowChargeAndRelease
-    type: 0
-    clip: {fileID: 8300000, guid: faaa7320ac201fa4689b2c3fb766c1d6, type: 3}
-    volume: 1
-    volumeVariance: 0.3
-    pitch: 1
-    pitchVariance: 0.2
-    loop: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
   _playBgMusic: 1
 --- !u!1 &1193858759
 GameObject:

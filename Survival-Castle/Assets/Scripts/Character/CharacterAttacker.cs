@@ -71,8 +71,6 @@ public class CharacterAttacker : MonoBehaviour {
 
         // Force for apply to projectile.
         projectile.AddForce(forceVector);
-
-        AudioManager.instance.Play("SfxXBowArrowRelease");
     }
 
     public void StartAttacking() {

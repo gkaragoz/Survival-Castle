@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FootSteps : MonoBehaviour {
+public class SFXFootSteps : MonoBehaviour {
 
     [SerializeField]
     private AudioClip[] _clips;

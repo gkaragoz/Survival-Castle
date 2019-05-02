@@ -107,8 +107,6 @@ public class BaseAttacker : MonoBehaviour {
 
         // Force for apply to projectile.
         projectile.AddForce(forceVector);
-
-        AudioManager.instance.Play("SfxArrowRelease" + UnityEngine.Random.Range(1, 3));
     }
 
     private void OnDrawGizmos() {
