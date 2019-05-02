@@ -7,7 +7,7 @@ public class BaseTargetSelector : MonoBehaviour {
 
     public Action onSearchTargetStarted;
     public Action onSearchTargetStopped;
-    public Action onTargetSelected;
+    public Action<CharacterController> onTargetSelected;
 
     [Header("Settings")]
     [SerializeField]
@@ -26,7 +26,6 @@ public class BaseTargetSelector : MonoBehaviour {
 
     public bool IsSearchingTarget { get { return _isSearchingTarget; } }
     public bool HasTarget { get { return _selectedTarget == null ? false : true; } }
-    public CharacterController SelectedTarget { get { return _selectedTarget; } }
     public float SearchRate { get { return _searchRate; } }
 
     private void Awake() {
@@ -90,7 +89,7 @@ public class BaseTargetSelector : MonoBehaviour {
 
         _selectedTarget = closestTarget;
 
-        onTargetSelected?.Invoke();
+        onTargetSelected?.Invoke(_selectedTarget);
     }
 
     public void StartSearchTarget() {

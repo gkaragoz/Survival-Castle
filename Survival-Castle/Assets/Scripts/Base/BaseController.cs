@@ -12,7 +12,6 @@ public class BaseController : MonoBehaviour {
     public float AttackRate { get { return _baseAttacker.AttackRange; } }
     public float AttackDamage { get { return _baseAttacker.AttackDamage; } }
     public bool HasTarget { get { return _baseTargetSelector.HasTarget; } }
-    public CharacterController SelectedTarget { get { return _baseTargetSelector.SelectedTarget; } }
     public float SearchRate { get { return _baseTargetSelector.SearchRate; } }
 
     private void Awake() {

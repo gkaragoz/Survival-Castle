@@ -8,6 +8,12 @@ public class BaseAttacker : MonoBehaviour {
     public Action onAttackStarted;
     public Action onAttackStopped;
 
+    [Header("Initialization")]
+    [SerializeField]
+    private Rigidbody _projectileRB;
+    [SerializeField]
+    private ProjectileArcArray _projectileArcArray;
+
     [Header("Settings")]
     [SerializeField]
     private float _attackRange = 20f;
@@ -20,6 +26,9 @@ public class BaseAttacker : MonoBehaviour {
     [SerializeField]
     [Utils.ReadOnly]
     private bool _isAttacking = false;
+    [SerializeField]
+    [Utils.ReadOnly]
+    private CharacterController _selectedTarget;
 
     private BaseTargetSelector _baseTargetSelector;
     private Coroutine IAttackCoroutine;
@@ -39,7 +48,9 @@ public class BaseAttacker : MonoBehaviour {
         _baseTargetSelector.onTargetSelected -= OnTargetSelected;
     }
 
-    private void OnTargetSelected() {
+    private void OnTargetSelected(CharacterController selectedTarget) {
+        this._selectedTarget = selectedTarget;
+
         StartAttack();
     }
 
@@ -51,18 +62,24 @@ public class BaseAttacker : MonoBehaviour {
 
         while (_isAttacking) {
             yield return new WaitForSeconds(_attackRate);
-            if (!_baseTargetSelector.SelectedTarget.gameObject.activeInHierarchy) {
+            if (_selectedTarget == null) {
                 StopAttack();
                 break;
             }
 
-            if (_baseTargetSelector.SelectedTarget.IsDead) {
+            if (!_selectedTarget.gameObject.activeInHierarchy) {
+                StopAttack();
+                break;
+            }
+
+            if (_selectedTarget.IsDead) {
                 StopAttack();
                 break;
             }
 
             if (IsTargetInRange()) {
-                _baseTargetSelector.SelectedTarget.TakeDamage(_attackDamage);
+                Attack();
+                //_baseTargetSelector.SelectedTarget.TakeDamage(_attackDamage);
             }
         }
 
@@ -72,7 +89,27 @@ public class BaseAttacker : MonoBehaviour {
     }
 
     private bool IsTargetInRange() {
-        return Vector3.Distance(transform.position, _baseTargetSelector.SelectedTarget.transform.position) <= _attackRange ? true : false;
+        return Vector3.Distance(transform.position, _selectedTarget.transform.position) <= _attackRange ? true : false;
+    }
+
+    private void Attack() {
+        Vector3 targetPosition = _selectedTarget.transform.position;
+        Rigidbody projectile = Instantiate(_projectileRB, _projectileArcArray.transform.position, Quaternion.identity);
+        Vector3 forceVector = _projectileArcArray.MagicShoot(targetPosition);
+
+        // Draw preposition of launch arc.
+        RenderArc(targetPosition);
+
+        // Force for apply to projectile.
+        projectile.AddForce(forceVector, ForceMode.VelocityChange);
+    }
+
+    private void RenderArc(Vector3 targetPosition) {
+        //Set visible of launchArcRenderer.
+        _projectileArcArray.SetVisibility(true);
+
+        //Keep calculate and render the launchArc.
+        _projectileArcArray.SetArcPoints(targetPosition);
     }
 
     private void OnDrawGizmos() {
