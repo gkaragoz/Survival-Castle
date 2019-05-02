@@ -82,20 +82,23 @@ public class BaseTargetSelector : MonoBehaviour {
         CharacterController closestTarget = EnemyAIController.instance.Enemies[0];
         float distance = Vector3.Distance(transform.position, closestTarget.transform.position);
 
-        for (int ii = 1; ii < enemyCount; ii++) {
+        for (int ii = 0; ii < enemyCount; ii++) {
             CharacterController potantialTarget = EnemyAIController.instance.Enemies[ii];
             if (potantialTarget.IsDead) {
                 continue;
             }
 
-            if (Vector3.Distance(transform.position, potantialTarget.transform.position) < distance) {
+            if (!potantialTarget.gameObject.activeInHierarchy) {
+                continue;
+            }
+
+            if (Vector3.Distance(transform.position, potantialTarget.transform.position) <= distance) {
                 closestTarget = potantialTarget;
+                _selectedTarget = closestTarget;
+
+                onTargetSelected?.Invoke(_selectedTarget);
             }
         }
-
-        _selectedTarget = closestTarget;
-
-        onTargetSelected?.Invoke(_selectedTarget);
     }
 
     public void StartSearchTarget() {

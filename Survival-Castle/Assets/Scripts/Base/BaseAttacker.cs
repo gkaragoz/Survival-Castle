@@ -74,11 +74,6 @@ public class BaseAttacker : MonoBehaviour {
                 break;
             }
 
-            if (!_selectedTarget.gameObject.activeInHierarchy) {
-                StopAttack();
-                break;
-            }
-
             if (_selectedTarget.IsDead) {
                 StopAttack();
                 break;
