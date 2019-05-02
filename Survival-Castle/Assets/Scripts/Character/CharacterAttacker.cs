@@ -8,13 +8,18 @@ public class CharacterAttacker : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private Rigidbody _projectileRB;
+    private Projectile _arrowProjectile;
+    [SerializeField]
+    private Transform _projectileSpawnTransform;
 
     [Header("Settings")]
+    [SerializeField]
     [Range(1, 89)]
     private float _shootAngle = 45f;
     [SerializeField]
     private float _attackRate = 1f;
+    [SerializeField]
+    private float _attackDamage = 50f;
 
     [Header("Debug")]
     [SerializeField]
@@ -53,11 +58,18 @@ public class CharacterAttacker : MonoBehaviour {
 
         onAttacking?.Invoke();
 
+        // Initialize projectile physics.
+        Vector3 targetPosition = GameManager.instance.Target.position;
+        Projectile projectile = Instantiate(_arrowProjectile, _projectileSpawnTransform.position, Quaternion.identity);
+        Vector3 forceVector = HelperArcProjectile.MagicShoot(_shootAngle, targetPosition, _projectileSpawnTransform.position);
+
+        // Set projectile damage.
+        projectile.Damage = _attackDamage;
+
+        // Force for apply to projectile.
+        projectile.AddForce(forceVector);
+
         AudioManager.instance.Play("SfxXBowArrowRelease");
-    }
-
-    private void CreateProjectile() {
-
     }
 
     public void StartAttacking() {

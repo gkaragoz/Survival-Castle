@@ -2158,28 +2158,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909724258}
   m_CullTransparentMesh: 0
---- !u!1 &933319707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 05035b78d90b21f43854dfe010ccd289,
-    type: 3}
-  m_PrefabInstance: {fileID: 1640116339}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &933319708
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933319707}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 2.187, y: 2.243, z: 2.2740002}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.08800001, y: 0.052, z: 1.4360001}
-  m_TimeToStationary: 0.5
 --- !u!1 &943087034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,6 +3840,7 @@ GameObject:
   - component: {fileID: 1870509539}
   - component: {fileID: 1870509540}
   - component: {fileID: 1870509541}
+  - component: {fileID: 1870509542}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -3941,6 +3920,19 @@ MonoBehaviour:
   _attackDamage: 200
   _isAttacking: 0
   _selectedTarget: {fileID: 0}
+--- !u!65 &1870509542
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870509537}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1001 &2008786523
 PrefabInstance:
   m_ObjectHideFlags: 0
