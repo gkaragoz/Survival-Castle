@@ -2,12 +2,27 @@
 
 public class Projectile : MonoBehaviour {
 
+    public enum OwnerEnum {
+        Base,
+        Enemy
+    }
+
+    [Header("Settings")]
+
     [Header("Debug")]
     [SerializeField]
     [Utils.ReadOnly]
     private float _damage = 0f;
+    [Utils.ReadOnly]
+    [SerializeField]
+    private OwnerEnum _owner;
 
     private Rigidbody _rb;
+
+    public OwnerEnum Owner {
+        get { return _owner; }
+        set { _owner = value; }
+    }
 
     public float Damage {
         get { return _damage; }

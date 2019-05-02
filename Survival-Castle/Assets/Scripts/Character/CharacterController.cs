@@ -71,9 +71,15 @@ public class CharacterController : MonoBehaviour, IPooledObject {
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Projectile") {
             Projectile projectile = other.GetComponent<Projectile>();
-            TakeDamage(projectile.Damage);
 
-            Destroy(other.gameObject, 1f);
+            switch (projectile.Owner) {
+                case Projectile.OwnerEnum.Base:
+                    TakeDamage(projectile.Damage);
+                    Destroy(other.gameObject, 1f);
+                    break;
+                case Projectile.OwnerEnum.Enemy:
+                    break;
+            }
         }
     }
 
