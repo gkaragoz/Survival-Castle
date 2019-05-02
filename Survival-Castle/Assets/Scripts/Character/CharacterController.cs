@@ -11,6 +11,12 @@ public class CharacterController : MonoBehaviour, IPooledObject {
     private CharacterAttacker _characterAttacker;
     private Character _characterStats;
 
+    [Header("Initializations")]
+    [SerializeField]
+    private SFXImpactFlesh _SFXImpactFlesh;
+    [SerializeField]
+    private SFXEarnGolds _SFXEarnGolds;
+
     [Header("Debug")]
     [SerializeField]
     [Utils.ReadOnly]
@@ -32,7 +38,7 @@ public class CharacterController : MonoBehaviour, IPooledObject {
 
         onDead?.Invoke(this);
 
-        AudioManager.instance.Play("SfxEarnGolds");
+        _SFXEarnGolds.Play();
     }
 
     public void StartMoving() {
@@ -59,8 +65,7 @@ public class CharacterController : MonoBehaviour, IPooledObject {
             return;
         }
 
-        int randomFleshIndex = UnityEngine.Random.Range(1, 3);
-        AudioManager.instance.Play("SfxImpactFlesh" + randomFleshIndex);
+        _SFXImpactFlesh.Play();
 
         onTakeDamage?.Invoke();
     }
