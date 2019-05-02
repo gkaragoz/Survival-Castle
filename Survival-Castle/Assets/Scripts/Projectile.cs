@@ -7,7 +7,15 @@ public class Projectile : MonoBehaviour {
         Enemy
     }
 
+    [Header("Initializations")]
+    [SerializeField]
+    private TrailRenderer _tr;
+
     [Header("Settings")]
+    [SerializeField]
+    private Material _projectileLineRed;
+    [SerializeField]
+    private Material _projectileLineGreen;
 
     [Header("Debug")]
     [SerializeField]
@@ -21,7 +29,6 @@ public class Projectile : MonoBehaviour {
 
     public OwnerEnum Owner {
         get { return _owner; }
-        set { _owner = value; }
     }
 
     public float Damage {
@@ -36,6 +43,22 @@ public class Projectile : MonoBehaviour {
     private void Update() {
         if (_rb.velocity.magnitude > 0) {
             _rb.rotation = Quaternion.LookRotation(_rb.velocity);
+        }
+    }
+
+    public void SetOwner(OwnerEnum owner) {
+        this._owner = owner;
+
+        switch (Owner) {
+            case OwnerEnum.Base:
+                _tr.material = _projectileLineGreen;
+                break;
+            case OwnerEnum.Enemy:
+                _tr.material = _projectileLineRed;
+                break;
+            default:
+                _tr.material = _projectileLineRed;
+                break;
         }
     }
 

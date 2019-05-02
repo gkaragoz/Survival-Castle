@@ -103,7 +103,7 @@ public class BaseAttacker : MonoBehaviour {
         projectile.Damage = AttackDamage;
 
         // Set projectile's owner.
-        projectile.Owner = Projectile.OwnerEnum.Base;
+        projectile.SetOwner(Projectile.OwnerEnum.Base);
 
         // Force for apply to projectile.
         projectile.AddForce(forceVector);

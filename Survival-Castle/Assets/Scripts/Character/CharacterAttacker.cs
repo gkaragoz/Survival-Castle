@@ -67,7 +67,7 @@ public class CharacterAttacker : MonoBehaviour {
         projectile.Damage = _attackDamage;
 
         // Set projectile's owner.
-        projectile.Owner = Projectile.OwnerEnum.Enemy;
+        projectile.SetOwner(Projectile.OwnerEnum.Enemy);
 
         // Force for apply to projectile.
         projectile.AddForce(forceVector);

@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ded256e91af804f805b6aa729e1cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tr: {fileID: 8428548969543210292}
+  _projectileLineRed: {fileID: 2100000, guid: 3950101bea2c8d9489dedae37cd62ab1, type: 2}
+  _projectileLineGreen: {fileID: 2100000, guid: 97f5effaad4e42747a8c0d6134907bfd,
+    type: 2}
   _damage: 0
   _owner: 0
 --- !u!65 &7759949534302040941
