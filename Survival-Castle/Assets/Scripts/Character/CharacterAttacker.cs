@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController), typeof(CharacterMotor))]
@@ -7,7 +6,13 @@ public class CharacterAttacker : MonoBehaviour {
 
     public Action onAttacking;
 
+    [Header("Initialization")]
+    [SerializeField]
+    private Rigidbody _projectileRB;
+
     [Header("Settings")]
+    [Range(1, 89)]
+    private float _shootAngle = 45f;
     [SerializeField]
     private float _attackRate = 1f;
 
@@ -49,6 +54,10 @@ public class CharacterAttacker : MonoBehaviour {
         onAttacking?.Invoke();
 
         AudioManager.instance.Play("SfxXBowArrowRelease");
+    }
+
+    private void CreateProjectile() {
+
     }
 
     public void StartAttacking() {

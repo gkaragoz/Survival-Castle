@@ -11,12 +11,13 @@ public class BaseAttacker : MonoBehaviour {
     [Header("Initialization")]
     [SerializeField]
     private Rigidbody _projectileRB;
-    [SerializeField]
-    private ProjectileArcArray _projectileArcArray;
 
     [Header("Settings")]
     [SerializeField]
     private bool _isLocked = false;
+    [SerializeField]
+    [Range(1, 89)]
+    private float _shootAngle = 45f;
     [SerializeField]
     private float _attackRange = 20f;
     [SerializeField]
@@ -100,24 +101,13 @@ public class BaseAttacker : MonoBehaviour {
 
     private void Attack() {
         Vector3 targetPosition = _selectedTarget.transform.position;
-        Rigidbody projectile = Instantiate(_projectileRB, _projectileArcArray.transform.position, Quaternion.identity);
-        Vector3 forceVector = _projectileArcArray.MagicShoot(targetPosition);
-
-        // Draw preposition of launch arc.
-        RenderArc(targetPosition);
+        Rigidbody projectile = Instantiate(_projectileRB, transform.position, Quaternion.identity);
+        Vector3 forceVector = HelperArcProjectile.MagicShoot(_shootAngle, targetPosition, transform.position);
 
         // Force for apply to projectile.
         projectile.AddForce(forceVector, ForceMode.VelocityChange);
 
         AudioManager.instance.Play("SfxArrowRelease" + UnityEngine.Random.Range(1, 3));
-    }
-
-    private void RenderArc(Vector3 targetPosition) {
-        //Set visible of launchArcRenderer.
-        _projectileArcArray.SetVisibility(true);
-
-        //Keep calculate and render the launchArc.
-        _projectileArcArray.SetArcPoints(targetPosition);
     }
 
     private void OnDrawGizmos() {
