@@ -56,6 +56,7 @@ public class CharacterController : MonoBehaviour, IPooledObject {
 
         if (_characterStats.GetCurrentHealth() <= 0) {
             Die();
+            return;
         }
 
         int randomFleshIndex = UnityEngine.Random.Range(1, 3);
@@ -70,6 +71,10 @@ public class CharacterController : MonoBehaviour, IPooledObject {
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Projectile") {
+            if (this.IsDead) {
+                return;
+            }
+
             Projectile projectile = other.GetComponent<Projectile>();
 
             switch (projectile.Owner) {
