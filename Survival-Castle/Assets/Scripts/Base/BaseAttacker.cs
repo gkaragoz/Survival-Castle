@@ -51,6 +51,11 @@ public class BaseAttacker : MonoBehaviour {
 
         while (_isAttacking) {
             yield return new WaitForSeconds(_attackRate);
+            if (!_baseTargetSelector.SelectedTarget.gameObject.activeInHierarchy) {
+                StopAttack();
+                break;
+            }
+
             if (_baseTargetSelector.SelectedTarget.IsDead) {
                 StopAttack();
                 break;

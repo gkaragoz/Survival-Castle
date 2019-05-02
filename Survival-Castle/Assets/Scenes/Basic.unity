@@ -2934,8 +2934,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: eee204e6146816842a2b8570eebe9aaf, type: 3}
     volume: 1
     volumeVariance: 0.3
-    pitch: 1
-    pitchVariance: 0.5
+    pitch: 2
+    pitchVariance: 0.15
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
@@ -2944,8 +2944,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ec7c3a4e018d5dc4b8d2c60dc02f675e, type: 3}
     volume: 1
     volumeVariance: 0.3
-    pitch: 1
-    pitchVariance: 0.5
+    pitch: 2
+    pitchVariance: 0.15
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
@@ -3013,6 +3013,16 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 0c3e69a8c6cc39c41b99a1a4c3282404, type: 3}
     volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.2
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: SfxArrowChargeAndRelease
+    type: 0
+    clip: {fileID: 8300000, guid: faaa7320ac201fa4689b2c3fb766c1d6, type: 3}
+    volume: 1
     volumeVariance: 0.3
     pitch: 1
     pitchVariance: 0.2

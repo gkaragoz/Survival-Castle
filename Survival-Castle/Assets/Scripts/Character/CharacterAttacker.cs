@@ -47,6 +47,8 @@ public class CharacterAttacker : MonoBehaviour {
         _nextAttack = Time.time + _attackRate;
 
         onAttacking?.Invoke();
+
+        AudioManager.instance.Play("SfxXBowArrowRelease");
     }
 
     public void StartAttacking() {
