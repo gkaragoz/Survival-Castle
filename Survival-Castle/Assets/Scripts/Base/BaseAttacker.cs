@@ -20,7 +20,7 @@ public class BaseAttacker : MonoBehaviour {
 
     public bool IsAttacking { get { return _isAttacking; } }
     public float AttackRange { get { return _baseStats.GetAttackRange(); } }
-    public float AttackRate { get { return _baseStats.GetAttackRange(); } }
+    public float AttackRate { get { return _baseStats.GetAttackRate(); } }
     public float AttackDamage { get { return _baseStats.GetAttackDamage(); } }
 
     private void Awake() {
