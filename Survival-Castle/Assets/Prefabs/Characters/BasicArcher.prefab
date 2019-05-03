@@ -401,8 +401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daec9fc37deca844196ff1b05551040b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrowProjectile: {fileID: 4706742241919027924, guid: effed772cbce7b64ca74d17ad1016314,
-    type: 3}
   _projectileSpawnTransform: {fileID: 3570846963456332822}
   _nextAttack: 0
   _isAttacking: 0
@@ -1030,6 +1028,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6002197368687872586, guid: 24612ed75223c774394bc098cf98ddad,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6002197368403995108, guid: 24612ed75223c774394bc098cf98ddad,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1054,6 +1057,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.16470587
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002197368403995111, guid: 24612ed75223c774394bc098cf98ddad,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24612ed75223c774394bc098cf98ddad, type: 3}

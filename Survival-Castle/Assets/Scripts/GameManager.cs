@@ -32,7 +32,13 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         ObjectPooler.instance.InitializePool("BasicArcher");
         ObjectPooler.instance.InitializePool("Arrow");
+        ObjectPooler.instance.InitializePool("OverlayHealthBar");
         InitializeEnemies();
+        InitializeOverlayHealthBars();
+
+        EnemySpawner.instance.StartSpawning();
+        BaseAIController.instance.StartControl();
+        EnemyAIController.instance.StartControl();
     }
 
     public void InitializeEnemies() {
@@ -44,6 +50,17 @@ public class GameManager : MonoBehaviour {
         }
 
         LogManager.instance.AddLog("[POOL ENEMIES]" + " has been initialized.");
+    }
+
+    public void InitializeOverlayHealthBars() {
+        GameObject[] overlayHealthBarObjs = ObjectPooler.instance.GetGameObjectsOnPool("OverlayHealthBar");
+
+        for (int ii = 0; ii < overlayHealthBarObjs.Length; ii++) {
+            CharacterController _characterController = _enemies[ii];
+            overlayHealthBarObjs[ii].GetComponent<OverlayHealthBar>().Initialize(_characterController);
+        }
+
+        LogManager.instance.AddLog("[POOL OVERLAY HEALTH BARS]" + " have been initialized.");
     }
 
 }

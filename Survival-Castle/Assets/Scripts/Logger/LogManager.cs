@@ -25,9 +25,9 @@ public class LogManager : MonoBehaviour {
 
     [Header("Settings")]
     [SerializeField]
-    private Color _logColor, _exceptionColor, _errorColor, _assertColor, _warningColor;
-    [SerializeField]
     private bool _isSystemOn = false;
+    [SerializeField]
+    private Color _logColor, _exceptionColor, _errorColor, _assertColor, _warningColor;
 
     private Queue<Log> _logs = new Queue<Log>();
 

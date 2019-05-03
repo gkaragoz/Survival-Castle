@@ -28,6 +28,8 @@ public class CharacterController : MonoBehaviour, IPooledObject {
     public bool HasReachedDestination { get { return _characterMotor.HasReachedDestination; } }
     public bool IsAttacking { get { return _characterAttacker.IsAttacking; } }
     public bool IsMoving { get { return _characterMotor.IsMoving; } }
+    public float CurrentHealth { get { return _characterStats.GetCurrentHealth(); } }
+    public float MaxHealth { get { return _characterStats.GetMaxHealth(); } }
 
     private void Awake() {
         _characterMotor = GetComponent<CharacterMotor>();
