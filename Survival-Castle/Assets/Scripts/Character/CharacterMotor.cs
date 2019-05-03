@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -8,12 +7,6 @@ public class CharacterMotor : MonoBehaviour {
     public Action onStartMove;
     public Action onStopMove;
 
-    [Header("Settings")]
-    [SerializeField]
-    private float _movementSpeed = 5f;
-    [SerializeField]
-    private float _stoppingDistance = 3f;
-
     [Header("Debug")]
     [SerializeField]
     [Utils.ReadOnly]
@@ -21,9 +14,10 @@ public class CharacterMotor : MonoBehaviour {
 
     private Transform _target;
     private CharacterController _characterController;
+    private Character _characterStats;
 
     public bool HasReachedDestination {
-        get { return Vector3.Distance(transform.position, _target.position) <= _stoppingDistance ? true : false; }
+        get { return Vector3.Distance(transform.position, _target.position) <= _characterStats.GetStoppingDistance() ? true : false; }
     }
 
     public bool IsMoving {
@@ -33,6 +27,7 @@ public class CharacterMotor : MonoBehaviour {
     private void Awake() {
         _target = GameManager.instance.Target;
         _characterController = GetComponent<CharacterController>();
+        _characterStats = GetComponent<Character>();
     }
 
     private void Update() {
@@ -45,7 +40,7 @@ public class CharacterMotor : MonoBehaviour {
         _isMoving = true;
 
         LookToTarget();
-        transform.Translate(Vector3.forward * _movementSpeed * Time.fixedDeltaTime);
+        transform.Translate(Vector3.forward * _characterStats.GetMovementSpeed() * Time.fixedDeltaTime);
     }
 
     private void LookToTarget() {

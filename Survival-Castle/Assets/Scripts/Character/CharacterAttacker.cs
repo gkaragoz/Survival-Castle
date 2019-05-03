@@ -12,15 +12,6 @@ public class CharacterAttacker : MonoBehaviour {
     [SerializeField]
     private Transform _projectileSpawnTransform;
 
-    [Header("Settings")]
-    [SerializeField]
-    [Range(1, 89)]
-    private float _shootAngle = 45f;
-    [SerializeField]
-    private float _attackRate = 1f;
-    [SerializeField]
-    private float _attackDamage = 50f;
-
     [Header("Debug")]
     [SerializeField]
     [Utils.ReadOnly]
@@ -31,10 +22,12 @@ public class CharacterAttacker : MonoBehaviour {
 
     private CharacterController _characterController;
     private CharacterMotor _characterMotor;
+    private Character _characterStats;
 
     private void Awake() {
         _characterController = GetComponent<CharacterController>();
         _characterMotor = GetComponent<CharacterMotor>();
+        _characterStats = GetComponent<Character>();
     }
 
     public bool IsAttacking {
@@ -54,17 +47,17 @@ public class CharacterAttacker : MonoBehaviour {
             return;
         }
 
-        _nextAttack = Time.time + _attackRate;
+        _nextAttack = Time.time + _characterStats.GetAttackRate();
 
         onAttacking?.Invoke();
 
         // Initialize projectile physics.
         Vector3 targetPosition = GameManager.instance.Target.position;
         Projectile projectile = Instantiate(_arrowProjectile, _projectileSpawnTransform.position, Quaternion.identity);
-        Vector3 forceVector = HelperArcProjectile.MagicShoot(_shootAngle, targetPosition, _projectileSpawnTransform.position);
+        Vector3 forceVector = HelperArcProjectile.MagicShoot(_characterStats.GetShootAngle(), targetPosition, _projectileSpawnTransform.position);
 
         // Set projectile damage.
-        projectile.Damage = _attackDamage;
+        projectile.Damage = _characterStats.GetAttackDamage();
 
         // Set projectile's owner.
         projectile.SetOwner(Projectile.OwnerEnum.Enemy);

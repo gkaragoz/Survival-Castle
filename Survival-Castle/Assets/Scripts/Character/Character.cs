@@ -30,6 +30,18 @@ public class Character : MonoBehaviour {
         _character.CurrentHealth += value;
     }
 
+    public void IncreaseAttackRate(float value) {
+        _character.AttackRate -= value;
+
+        if (GetAttackRate() <= GetMaxAttackRate()) {
+            _character.AttackRate = GetMaxAttackRate();
+        }
+    }
+
+    public void IncreaseAttackDamage(float value) {
+        _character.AttackDamage += value;
+    }
+
     #endregion
 
     #region Decreasers
@@ -40,6 +52,19 @@ public class Character : MonoBehaviour {
         if (GetCurrentHealth() <= 0) {
             _character.CurrentHealth = 0;
         }
+    }
+
+    public void DecreaseAttackRate(float value) {
+        _character.AttackRate += value;
+    }
+
+    public void DecreaseAttackDamage(float value) {
+        _character.AttackDamage -= value;
+
+        if (GetAttackDamage() <= GetMinAttackDamage()) {
+            _character.AttackDamage = GetMinAttackDamage();
+        }
+
     }
 
     #endregion
@@ -76,6 +101,34 @@ public class Character : MonoBehaviour {
 
     public float GetMaxHealth() {
         return _character.MaxHealth;
+    }
+
+    public float GetShootAngle() {
+        return _character.ShootAngle;
+    }
+
+    public float GetAttackRate() {
+        return _character.AttackRate;
+    }
+
+    public float GetMaxAttackRate() {
+        return _character.MaxAttackRate;
+    }
+
+    public float GetAttackDamage() {
+        return _character.AttackRate;
+    }
+
+    public float GetMinAttackDamage() {
+        return _character.MinAttackDamage;
+    }
+
+    public float GetMovementSpeed() {
+        return _character.MovementSpeed;
+    }
+
+    public float GetStoppingDistance() {
+        return _character.StoppingDistance;
     }
 
     #endregion

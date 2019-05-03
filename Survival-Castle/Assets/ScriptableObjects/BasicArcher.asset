@@ -16,3 +16,10 @@ MonoBehaviour:
   _prefab: {fileID: 3465368666218657453, guid: 2da73f3985553294da53d713dec9aef7, type: 3}
   _currentHealth: 500
   _maxHealth: 500
+  _shootAngle: 45
+  _attackRate: 1
+  _maxAttackRate: 0.25
+  _attackDamage: 50
+  _minAttackDamage: 1
+  _movementSpeed: 3
+  _stoppingDistance: 12
