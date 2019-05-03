@@ -13,7 +13,7 @@ public class BaseController : MonoBehaviour {
 
     public bool IsAttacking { get { return _baseAttacker.IsAttacking; } }
     public float AttackRange { get { return _baseAttacker.AttackRange; } }
-    public float AttackRate { get { return _baseAttacker.AttackRange; } }
+    public float AttackRate { get { return _baseAttacker.AttackRate; } }
     public float AttackDamage { get { return _baseAttacker.AttackDamage; } }
     public bool HasTarget { get { return _baseTargetSelector.HasTarget; } }
     public CharacterController SelectedTarget { get { return _baseTargetSelector.SelectedTarget; } }
