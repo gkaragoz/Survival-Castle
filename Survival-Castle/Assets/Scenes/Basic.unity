@@ -1364,7 +1364,7 @@ MonoBehaviour:
     name: BasicArcher
     prefab: {fileID: 3465368666218657453, guid: 2da73f3985553294da53d713dec9aef7,
       type: 3}
-    size: 30
+    size: 5
 --- !u!114 &647330362
 MonoBehaviour:
   m_ObjectHideFlags: 0

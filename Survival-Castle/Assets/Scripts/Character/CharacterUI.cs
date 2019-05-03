@@ -16,11 +16,13 @@ public class CharacterUI : Menu {
 
         _characterController.onTakeDamage += OnTakeDamage;
         _characterController.onDead += OnDead;
+        _characterController.onReused += OnReused;
     }
 
     private void OnDestroy() {
         _characterController.onTakeDamage -= OnTakeDamage;
         _characterController.onDead -= OnDead;
+        _characterController.onReused -= OnReused;
     }
 
     private void Start() {
@@ -34,6 +36,13 @@ public class CharacterUI : Menu {
 
     private void OnDead(CharacterController characterController) {
         Hide();
+    }
+
+    private void OnReused() {
+        _slider.maxValue = _characterStats.GetMaxHealth();
+        _slider.value = _characterStats.GetCurrentHealth();
+
+        Show();
     }
 
 }

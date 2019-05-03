@@ -26,9 +26,7 @@ public class EnemySpawner : MonoBehaviour {
     private float radius = 10f;
 
     private void Spawn() {
-        GameObject newArcher = ObjectPooler.instance.SpawnFromPool(BASIC_ARCHER);
-        newArcher.transform.position = RandomPointOnCircleEdge(radius);
-        newArcher.transform.rotation = Quaternion.identity;
+        GameObject newArcher = ObjectPooler.instance.SpawnFromPool(BASIC_ARCHER, RandomPointOnCircleEdge(radius), Quaternion.identity);
 
         LogManager.instance.AddLog("[SPAWNER] " + newArcher.name + " has been spawned.");
     }

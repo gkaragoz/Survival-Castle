@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterMotor), typeof(CharacterAttacker))]
@@ -6,6 +7,7 @@ public class CharacterController : MonoBehaviour, IPooledObject {
 
     public Action<CharacterController> onDead;
     public Action onTakeDamage;
+    public Action onReused;
 
     private CharacterMotor _characterMotor;
     private CharacterAttacker _characterAttacker;
@@ -38,7 +40,16 @@ public class CharacterController : MonoBehaviour, IPooledObject {
 
         onDead?.Invoke(this);
 
+        StartCoroutine(ISetDeactiveSelf());
+
         _SFXEarnGolds.Play();
+    }
+
+    public IEnumerator ISetDeactiveSelf() {
+        yield return new WaitForSeconds(_characterStats.GetDeactivatorTime());
+        this.gameObject.SetActive(false);
+
+        yield break;
     }
 
     public void StartMoving() {
@@ -71,7 +82,10 @@ public class CharacterController : MonoBehaviour, IPooledObject {
     }
 
     public void OnObjectReused() {
+        _characterStats.SetCurrentHealth(_characterStats.GetMaxHealth());
+        _isDead = false;
 
+        onReused?.Invoke();
     }
 
     private void OnTriggerEnter(Collider other) {

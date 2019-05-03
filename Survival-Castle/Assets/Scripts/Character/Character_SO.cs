@@ -36,6 +36,10 @@ public class Character_SO : ScriptableObject {
     [SerializeField]
     private float _stoppingDistance = 3f;
 
+    // Misc
+    [SerializeField]
+    private float _deactivatorTime = 2f;
+
     public string Name {
         get { return _name; }
         set { _name = value; }
@@ -87,6 +91,10 @@ public class Character_SO : ScriptableObject {
     public float StoppingDistance {
         get { return _stoppingDistance; }
         set { _stoppingDistance = value; }
+    }
+
+    public float DeactivatorTime {
+        get { return _deactivatorTime; }
     }
 
     #endregion

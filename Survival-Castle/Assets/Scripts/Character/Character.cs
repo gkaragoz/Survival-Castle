@@ -131,6 +131,10 @@ public class Character : MonoBehaviour {
         return _character.StoppingDistance;
     }
 
+    public float GetDeactivatorTime() {
+        return _character.DeactivatorTime;
+    }
+
     #endregion
 
     #region Custom Methods
