@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         ObjectPooler.instance.InitializePool("BasicArcher");
+        ObjectPooler.instance.InitializePool("Arrow");
         InitializeEnemies();
     }
 

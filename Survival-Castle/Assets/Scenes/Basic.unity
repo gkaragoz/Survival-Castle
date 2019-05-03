@@ -210,7 +210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -125, z: 0}
 --- !u!1 &66162243
 GameObject:
@@ -685,7 +685,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &230291837
 GameObject:
@@ -1364,7 +1364,11 @@ MonoBehaviour:
     name: BasicArcher
     prefab: {fileID: 3465368666218657453, guid: 2da73f3985553294da53d713dec9aef7,
       type: 3}
-    size: 5
+    size: 30
+  - parentTransform: {fileID: 1889882587}
+    name: Arrow
+    prefab: {fileID: 288695798051182488, guid: effed772cbce7b64ca74d17ad1016314, type: 3}
+    size: 100
 --- !u!114 &647330362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1785,7 +1789,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -125, z: 0}
 --- !u!1 &735531105
 GameObject:
@@ -2280,7 +2284,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -2363,7 +2367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!1 &966477465
 GameObject:
@@ -2941,7 +2945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165011118
 GameObject:
@@ -4366,7 +4370,7 @@ Transform:
   - {fileID: 396105897}
   - {fileID: 412063255}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1870509539
 MonoBehaviour:
@@ -4406,8 +4410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6477446d078a440b36c05bf969c49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrowProjectile: {fileID: 4706742241919027924, guid: effed772cbce7b64ca74d17ad1016314,
-    type: 3}
   _isAttacking: 0
   _nextAttack: 0
 --- !u!65 &1870509542
@@ -4453,6 +4455,36 @@ MonoBehaviour:
   container: {fileID: 0}
   subContainer: {fileID: 0}
   _slider: {fileID: 1475473582}
+--- !u!1 &1889882586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889882587}
+  m_Layer: 0
+  m_Name: Projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1889882587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889882586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30, y: 0, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1919807530
 GameObject:
   m_ObjectHideFlags: 0
@@ -4688,7 +4720,7 @@ RectTransform:
   - {fileID: 469488553}
   - {fileID: 2100182662}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5017,6 +5049,11 @@ PrefabInstance:
     - target: {fileID: 57911837476243377, guid: 6a450dce5ca8547478f302801394dd5f,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 57911837476243377, guid: 6a450dce5ca8547478f302801394dd5f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 57911836747263335, guid: 6a450dce5ca8547478f302801394dd5f,

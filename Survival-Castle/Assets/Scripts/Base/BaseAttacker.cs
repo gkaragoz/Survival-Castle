@@ -3,10 +3,6 @@
 [RequireComponent(typeof(BaseTargetSelector))]
 public class BaseAttacker : MonoBehaviour {
 
-    [Header("Initialization")]
-    [SerializeField]
-    private Projectile _arrowProjectile;
-
     [Header("Debug")]
     [SerializeField]
     //[Utils.ReadOnly]
@@ -52,7 +48,7 @@ public class BaseAttacker : MonoBehaviour {
 
     private void LaunchProjectile() {
         Vector3 targetPosition = _baseTargetSelector.SelectedTarget.transform.position;
-        Projectile projectile = Instantiate(_arrowProjectile, transform.position, Quaternion.identity);
+        Projectile projectile = ObjectPooler.instance.SpawnFromPool("Arrow", transform.position, Quaternion.identity).GetComponent<Projectile>();
         Vector3 forceVector = HelperArcProjectile.MagicShoot(_baseStats.GetShootAngle(), targetPosition, transform.position);
 
         // Set projectile damage.

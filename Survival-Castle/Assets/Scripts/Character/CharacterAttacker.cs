@@ -8,8 +8,6 @@ public class CharacterAttacker : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private Projectile _arrowProjectile;
-    [SerializeField]
     private Transform _projectileSpawnTransform;
 
     [Header("Debug")]
@@ -53,7 +51,7 @@ public class CharacterAttacker : MonoBehaviour {
 
         // Initialize projectile physics.
         Vector3 targetPosition = GameManager.instance.Target.position;
-        Projectile projectile = Instantiate(_arrowProjectile, _projectileSpawnTransform.position, Quaternion.identity);
+        Projectile projectile = ObjectPooler.instance.SpawnFromPool("Arrow", _projectileSpawnTransform.position, Quaternion.identity).GetComponent<Projectile>();
         Vector3 forceVector = HelperArcProjectile.MagicShoot(_characterStats.GetShootAngle(), targetPosition, _projectileSpawnTransform.position);
 
         // Set projectile damage.

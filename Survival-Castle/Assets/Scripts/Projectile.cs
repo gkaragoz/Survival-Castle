@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour, IPooledObject {
 
     public enum OwnerEnum {
         Base,
@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour {
         }
 
         if (transform.position.y <= 0) {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -68,6 +68,10 @@ public class Projectile : MonoBehaviour {
 
     public void AddForce(Vector3 force) {
         _rb.AddForce(force, ForceMode.VelocityChange);
+    }
+
+    public void OnObjectReused() {
+        this.gameObject.SetActive(true);
     }
 
 }
