@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
             _enemies[ii] = enemyObjs[ii].GetComponent<CharacterController>();
         }
 
-        LogManager.instance.AddLog("[POOL ENEMIES]" + " has been initialized.");
+        Debug.Log("[POOL ENEMIES]" + " has been initialized.");
     }
 
     public void InitializeOverlayHealthBars() {
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
             overlayHealthBarObjs[ii].GetComponent<OverlayHealthBar>().Initialize(_characterController);
         }
 
-        LogManager.instance.AddLog("[POOL OVERLAY HEALTH BARS]" + " have been initialized.");
+        Debug.Log("[POOL OVERLAY HEALTH BARS]" + " have been initialized.");
     }
 
 }

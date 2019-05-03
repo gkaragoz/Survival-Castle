@@ -51,7 +51,7 @@ public class ObjectPooler : MonoBehaviour {
 
         poolDictionary.Add(pool.name, objectPool);
 
-        LogManager.instance.AddLog("[OBJECT POOLER] " + pool.name + " pool has been initialized.");
+        Debug.Log("[OBJECT POOLER] " + pool.name + " pool has been initialized.");
     }
 
     public void ClearPool(string name) {

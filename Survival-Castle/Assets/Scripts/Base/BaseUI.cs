@@ -33,7 +33,7 @@ public class BaseUI : Menu {
     }
 
     private void OnDead() {
-        LogManager.instance.AddLog("[BASE] has been destroyed!");
+        Debug.Log("[BASE] has been destroyed!");
     }
 
 }

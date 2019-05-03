@@ -113,14 +113,14 @@ public class EnemyAIController : MonoBehaviour {
     }
 
     public void StartControl() {
-        LogManager.instance.AddLog("[ENEMY AI] Control is starting.");
+        Debug.Log("[ENEMY AI] Control is starting.");
 
         _isRunning = true;
         IControllingProcessCoroutine = StartCoroutine(IControllingProcess());
     }
 
     public void StopControl() {
-        LogManager.instance.AddLog("[ENEMY AI] Control is stopping.");
+        Debug.Log("[ENEMY AI] Control is stopping.");
 
         _isRunning = false;
     }

@@ -74,14 +74,14 @@ public class BaseAIController : MonoBehaviour {
     }
 
     public void StartControl() {
-        LogManager.instance.AddLog("[BASE AI] Control is starting.");
+        Debug.Log("[BASE AI] Control is starting.");
 
         _isRunning = true;
         IControllingProcessCoroutine = StartCoroutine(IControllingProcess());
     }
 
     public void StopControl() {
-        LogManager.instance.AddLog("[BASE AI] Control is stopping.");
+        Debug.Log("[BASE AI] Control is stopping.");
 
         _isRunning = false;
     }
