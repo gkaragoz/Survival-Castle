@@ -15,3 +15,11 @@ MonoBehaviour:
   _name: Base
   _currentHealth: 1000
   _maxHealth: 1000
+  _shootAngle: 45
+  _attackRange: 20
+  _minAttackRange: 15
+  _maxAttackRange: 40
+  _attackRate: 1
+  _maxAttackRate: 20
+  _attackDamage: 250
+  _minAttackDamage: 50

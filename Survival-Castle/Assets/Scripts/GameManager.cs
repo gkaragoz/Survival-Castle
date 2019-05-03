@@ -15,17 +15,34 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
+    [Header("Initialization")]
     [SerializeField]
     private Transform _target;
     [SerializeField]
     private BaseController _baseController;
 
+    [Header("Debug")]
+    [SerializeField]
+    [Utils.ReadOnly]
+    private CharacterController[] _enemies;
+    public CharacterController[] Enemies { get { return _enemies; } }
+
     public Transform Target { get { return _target; } }
 
     private void Start() {
         ObjectPooler.instance.InitializePool("BasicArcher");
-        EnemyAIController.instance.Initialize();
-        _baseController.StartSearchTarget();
+        InitializeEnemies();
+    }
+
+    public void InitializeEnemies() {
+        GameObject[] enemyObjs = ObjectPooler.instance.GetGameObjectsOnPool("BasicArcher");
+        _enemies = new CharacterController[enemyObjs.Length];
+
+        for (int ii = 0; ii < enemyObjs.Length; ii++) {
+            _enemies[ii] = enemyObjs[ii].GetComponent<CharacterController>();
+        }
+
+        LogManager.instance.AddLog("[POOL ENEMIES]" + " has been initialized.");
     }
 
 }

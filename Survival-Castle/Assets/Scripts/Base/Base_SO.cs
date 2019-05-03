@@ -14,10 +14,6 @@ public class Base_SO : ScriptableObject {
     [SerializeField]
     private float _maxHealth;
 
-    // Target searching
-    [SerializeField]
-    private float _searchRate = 0.5f;
-
     // Attack
     [SerializeField]
     [Range(1, 89)]
@@ -50,10 +46,6 @@ public class Base_SO : ScriptableObject {
     public float MaxHealth {
         get { return _maxHealth; }
         set { _maxHealth = value; }
-    }
-
-    public float SearchRate {
-        get { return _searchRate; }
     }
 
     public float ShootAngle {

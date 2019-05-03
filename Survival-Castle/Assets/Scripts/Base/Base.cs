@@ -114,10 +114,6 @@ public class Base : MonoBehaviour {
         return _base.MaxHealth;
     }
 
-    public float GetSearchRate() {
-        return _base.SearchRate;
-    }
-
     public float GetShootAngle() {
         return _base.ShootAngle;
     }

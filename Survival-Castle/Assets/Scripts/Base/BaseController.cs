@@ -11,13 +11,12 @@ public class BaseController : MonoBehaviour {
     private BaseAttacker _baseAttacker;
     private Base _baseStats;
 
-    public bool IsSearchingTarget { get { return _baseTargetSelector.IsSearchingTarget; } }
     public bool IsAttacking { get { return _baseAttacker.IsAttacking; } }
     public float AttackRange { get { return _baseAttacker.AttackRange; } }
     public float AttackRate { get { return _baseAttacker.AttackRange; } }
     public float AttackDamage { get { return _baseAttacker.AttackDamage; } }
     public bool HasTarget { get { return _baseTargetSelector.HasTarget; } }
-    public float SearchRate { get { return _baseTargetSelector.SearchRate; } }
+    public CharacterController SelectedTarget { get { return _baseTargetSelector.SelectedTarget; } }
     public bool IsDead { get { return _isDead; } }
 
     [Header("Debug")]
@@ -39,12 +38,20 @@ public class BaseController : MonoBehaviour {
         //_SFXEarnGolds.Play();
     }
 
-    public void StartSearchTarget() {
-        _baseTargetSelector.StartSearchTarget();
+    public void StartAttacking() {
+        _baseAttacker.StartAttacking();
     }
 
-    public void StopSearchTarget() {
-        _baseTargetSelector.StopSearchTarget();
+    public void StopAttacking() {
+        _baseAttacker.StopAttacking();
+    }
+
+    public void SearchTarget() {
+        _baseTargetSelector.SearchTarget();
+    }
+
+    public void DeselectTarget() {
+        _baseTargetSelector.DeselectTarget();
     }
 
     public void TakeDamage(float amount) {

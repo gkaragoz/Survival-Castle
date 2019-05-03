@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class PanelDebug : MonoBehaviour {
 
     [SerializeField]
-    private TextMeshProUGUI _txtAITickrate;
+    private TextMeshProUGUI _txtEnemiesAITickrate;
     [SerializeField]
-    private TextMeshProUGUI _txtBaseTargetSearcherRate;
+    private TextMeshProUGUI _txtBaseAITickrate;
     [SerializeField]
     private TextMeshProUGUI _txtBaseAttackRate;
     [SerializeField]
@@ -20,9 +20,13 @@ public class PanelDebug : MonoBehaviour {
     [SerializeField]
     private TextMeshProUGUI _txtSpawner;
     [SerializeField]
-    private Button _btnAIController;
+    private Button _btnEnemiesAIController;
     [SerializeField]
-    private TextMeshProUGUI _txtAIController;
+    private TextMeshProUGUI _txtEnemiesAIController;
+    [SerializeField]
+    private Button _btnBaseAIController;
+    [SerializeField]
+    private TextMeshProUGUI _txtBaseAIController;
     [SerializeField]
     private Color _startColor;
     [SerializeField]
@@ -32,11 +36,12 @@ public class PanelDebug : MonoBehaviour {
     private BaseController _baseController;
 
     private bool _isSpawnerStarted = false;
-    private bool _isAIController = false;
+    private bool _isEnemiesAIController = false;
+    private bool _isBaseAIController = false;
 
     private void Update() {
-        _txtAITickrate.text = "AI BRAIN TICK RATE: \t\t\t" + EnemyAIController.instance.Tickrate.ToString() + " (sec)";
-        _txtBaseTargetSearcherRate.text = "BASE TARGET SEARCH RATE: \t" + _baseController.SearchRate.ToString() + " (sec)";
+        _txtEnemiesAITickrate.text = "AI BRAIN TICK RATE: \t\t\t" + EnemyAIController.instance.Tickrate.ToString() + " (sec)";
+        _txtBaseAITickrate.text = "BASE TARGET SEARCH RATE: \t" + BaseAIController.instance.Tickrate.ToString() + " (sec)";
         _txtBaseAttackRate.text = "BASE ATTACK RATE: \t\t\t" + _baseController.AttackRate.ToString() + " (sec)";
         _txtBaseAttackDamage.text = "BASE ATTACK DAMAGE: \t\t" + _baseController.AttackDamage.ToString();
         _txtBaseAttackRange.text = "BASE ATTACK RANGE: \t\t\t" + _baseController.AttackRange.ToString() + " (m)";
@@ -56,17 +61,31 @@ public class PanelDebug : MonoBehaviour {
         }
     }
 
-    public void OnClick_BtnAIController() {
-        _isAIController = !_isAIController;
+    public void OnClick_BtnEnemiesAIController() {
+        _isEnemiesAIController = !_isEnemiesAIController;
 
-        if (_isAIController) {
-            _txtAIController.text = "STOP";
-            _btnAIController.GetComponent<Image>().color = _stopColor;
+        if (_isEnemiesAIController) {
+            _txtEnemiesAIController.text = "STOP";
+            _btnEnemiesAIController.GetComponent<Image>().color = _stopColor;
             EnemyAIController.instance.StartControl();
         } else {
-            _txtAIController.text = "START";
-            _btnAIController.GetComponent<Image>().color = _startColor;
+            _txtEnemiesAIController.text = "START";
+            _btnEnemiesAIController.GetComponent<Image>().color = _startColor;
             EnemyAIController.instance.StopControl();
+        }
+    }
+
+    public void OnClick_BtnBaseAIController() {
+        _isBaseAIController = !_isBaseAIController;
+
+        if (_isBaseAIController) {
+            _txtBaseAIController.text = "STOP";
+            _btnBaseAIController.GetComponent<Image>().color = _stopColor;
+            BaseAIController.instance.StartControl();
+        } else {
+            _txtBaseAIController.text = "START";
+            _btnBaseAIController.GetComponent<Image>().color = _startColor;
+            BaseAIController.instance.StopControl();
         }
     }
 
