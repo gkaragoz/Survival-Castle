@@ -71,6 +71,7 @@ public class Projectile : MonoBehaviour, IPooledObject {
     }
 
     public void OnObjectReused() {
+        this._rb.velocity = Vector3.zero;
         this.gameObject.SetActive(true);
     }
 
