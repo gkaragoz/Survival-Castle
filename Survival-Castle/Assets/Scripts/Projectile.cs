@@ -44,6 +44,10 @@ public class Projectile : MonoBehaviour {
         if (_rb.velocity.magnitude > 0) {
             _rb.rotation = Quaternion.LookRotation(_rb.velocity);
         }
+
+        if (transform.position.y <= 0) {
+            Destroy(this.gameObject);
+        }
     }
 
     public void SetOwner(OwnerEnum owner) {

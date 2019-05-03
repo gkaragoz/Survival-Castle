@@ -85,7 +85,6 @@ public class CharacterController : MonoBehaviour, IPooledObject {
             switch (projectile.Owner) {
                 case Projectile.OwnerEnum.Base:
                     TakeDamage(projectile.Damage);
-                    Destroy(other.gameObject, 1f);
                     break;
                 case Projectile.OwnerEnum.Enemy:
                     break;
