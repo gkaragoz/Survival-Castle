@@ -30,6 +30,26 @@ public class Base : MonoBehaviour {
         _base.CurrentHealth += value;
     }
 
+    public void IncreaseAttackRate(float value) {
+        _base.AttackRate -= value;
+
+        if (GetAttackRate() <= GetMaxAttackRate()) {
+            _base.AttackRate = GetMaxAttackRate();
+        }
+    }
+
+    public void IncreaseAttackDamage(float value) {
+        _base.AttackDamage += value;
+    }
+
+    public void IncreaseAttackRange(float value) {
+        _base.AttackRange += value;
+
+        if (GetAttackRange() >= GetMaxAttackRange()) {
+            _base.AttackRange = GetMaxAttackRange();
+        }
+    }
+
     #endregion
 
     #region Decreasers
@@ -39,6 +59,26 @@ public class Base : MonoBehaviour {
 
         if (GetCurrentHealth() <= 0) {
             _base.CurrentHealth = 0;
+        }
+    }
+
+    public void DecreaseAttackRate(float value) {
+        _base.AttackRate += value;
+    }
+
+    public void DecreaseAttackDamage(float value) {
+        _base.AttackDamage -= value;
+
+        if (GetAttackDamage() <= GetMinAttackDamage()) {
+            _base.AttackDamage = GetMinAttackDamage();
+        }
+    }
+
+    public void DecreaseAttackRange(float value) {
+        _base.AttackRange -= value;
+
+        if (GetAttackRange() <= GetMinAttackRange()) {
+            _base.AttackRange = GetMinAttackRange();
         }
     }
 
@@ -72,6 +112,42 @@ public class Base : MonoBehaviour {
 
     public float GetMaxHealth() {
         return _base.MaxHealth;
+    }
+
+    public float GetSearchRate() {
+        return _base.SearchRate;
+    }
+
+    public float GetShootAngle() {
+        return _base.ShootAngle;
+    }
+
+    public float GetAttackRange() {
+        return _base.AttackRange;
+    }
+
+    public float GetMaxAttackRange() {
+        return _base.MaxAttackRange;
+    }
+
+    public float GetMinAttackRange() {
+        return _base.MinAttackRange;
+    }
+
+    public float GetAttackRate() {
+        return _base.AttackRate;
+    }
+
+    public float GetMaxAttackRate() {
+        return _base.MaxAttackRate;
+    }
+
+    public float GetAttackDamage() {
+        return _base.AttackDamage;
+    }
+
+    public float GetMinAttackDamage() {
+        return _base.MinAttackDamage;
     }
 
     #endregion

@@ -12,8 +12,6 @@ public class BaseTargetSelector : MonoBehaviour {
     [Header("Settings")]
     [SerializeField]
     private bool _isLocked = false;
-    [SerializeField]
-    private float _searchRate = 0.5f;
 
     [Header("Debug")]
     [SerializeField]
@@ -24,14 +22,16 @@ public class BaseTargetSelector : MonoBehaviour {
     private bool _isSearchingTarget = false;
 
     private BaseAttacker _baseAttacker;
+    private Base _baseStats;
     private Coroutine ISearchTargetCoroutine;
 
     public bool IsSearchingTarget { get { return _isSearchingTarget; } }
     public bool HasTarget { get { return _selectedTarget == null ? false : true; } }
-    public float SearchRate { get { return _searchRate; } }
+    public float SearchRate { get { return _baseStats.GetSearchRate(); } }
 
     private void Awake() {
         _baseAttacker = GetComponent<BaseAttacker>();
+        _baseStats = GetComponent<Base>();
 
         _baseAttacker.onAttackStopped += OnAttackStopped;
     }
@@ -52,7 +52,7 @@ public class BaseTargetSelector : MonoBehaviour {
         onSearchTargetStarted?.Invoke();
 
         while (_isSearchingTarget) {
-            yield return new WaitForSeconds(_searchRate);
+            yield return new WaitForSeconds(_baseStats.GetSearchRate());
 
             if (_isLocked) {
                 continue;

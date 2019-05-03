@@ -15,15 +15,6 @@ public class BaseAttacker : MonoBehaviour {
     [Header("Settings")]
     [SerializeField]
     private bool _isLocked = false;
-    [SerializeField]
-    [Range(1, 89)]
-    private float _shootAngle = 45f;
-    [SerializeField]
-    private float _attackRange = 20f;
-    [SerializeField]
-    private float _attackRate = 0.5f;
-    [SerializeField]
-    private float _attackDamage = 50f;
 
     [Header("Debug")]
     [SerializeField]
@@ -34,15 +25,17 @@ public class BaseAttacker : MonoBehaviour {
     private CharacterController _selectedTarget;
 
     private BaseTargetSelector _baseTargetSelector;
+    private Base _baseStats;
     private Coroutine IAttackCoroutine;
 
     public bool IsAttacking { get { return _isAttacking; } }
-    public float AttackRange { get { return _attackRange; } }
-    public float AttackRate { get { return _attackRange; } }
-    public float AttackDamage { get { return _attackDamage; } }
+    public float AttackRange { get { return _baseStats.GetAttackRange(); } }
+    public float AttackRate { get { return _baseStats.GetAttackRange(); } }
+    public float AttackDamage { get { return _baseStats.GetAttackDamage(); } }
 
     private void Awake() {
         _baseTargetSelector = GetComponent<BaseTargetSelector>();
+        _baseStats = GetComponent<Base>();
 
         _baseTargetSelector.onTargetSelected += OnTargetSelected;
     }
@@ -64,7 +57,7 @@ public class BaseAttacker : MonoBehaviour {
         onAttackStarted?.Invoke();
 
         while (_isAttacking) {
-            yield return new WaitForSeconds(_attackRate);
+            yield return new WaitForSeconds(_baseStats.GetAttackRate());
             if (_isLocked) {
                 continue;
             }
@@ -91,13 +84,13 @@ public class BaseAttacker : MonoBehaviour {
     }
 
     private bool IsTargetInRange() {
-        return Vector3.Distance(transform.position, _selectedTarget.transform.position) <= _attackRange ? true : false;
+        return Vector3.Distance(transform.position, _selectedTarget.transform.position) <= _baseStats.GetAttackRange() ? true : false;
     }
 
     private void Attack() {
         Vector3 targetPosition = _selectedTarget.transform.position;
         Projectile projectile = Instantiate(_arrowProjectile, transform.position, Quaternion.identity);
-        Vector3 forceVector = HelperArcProjectile.MagicShoot(_shootAngle, targetPosition, transform.position);
+        Vector3 forceVector = HelperArcProjectile.MagicShoot(_baseStats.GetShootAngle(), targetPosition, transform.position);
 
         // Set projectile damage.
         projectile.Damage = AttackDamage;
@@ -110,9 +103,13 @@ public class BaseAttacker : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
+        if (_baseStats == null) {
+            return;
+        }
+
         Gizmos.color = Color.cyan;
 
-        Gizmos.DrawWireSphere(transform.transform.position, _attackRange);
+        Gizmos.DrawWireSphere(transform.transform.position, _baseStats.GetAttackRange());
     }
 
     public void StartAttack() {
