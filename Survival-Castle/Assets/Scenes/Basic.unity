@@ -1042,55 +1042,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.08800001, y: 0.052, z: 1.4360001}
   m_TimeToStationary: 0.5
---- !u!1 &882518817
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 882518818}
-  - component: {fileID: 882518819}
-  m_Layer: 9
-  m_Name: Billboards
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &882518818
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882518817}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1475473581}
-  m_Father: {fileID: 1122454166}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &882518819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882518817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc19c86345da2634eb2933bd3ab1839a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &943087034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1204,7 @@ GameObject:
   - component: {fileID: 1122454168}
   - component: {fileID: 1122454167}
   m_Layer: 9
-  m_Name: WorldSpace_UI
+  m_Name: WorldSpace_Overlay_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1270,7 +1221,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
-  - {fileID: 882518818}
+  - {fileID: 1475473581}
   m_Father: {fileID: 1870509538}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1641,12 +1592,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 882518818}
+    m_TransformParent: {fileID: 1122454166}
     m_Modifications:
     - target: {fileID: 6002197368267283210, guid: 24612ed75223c774394bc098cf98ddad,
         type: 3}
       propertyPath: m_Name
       value: WorldSpaceSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002197368267283210, guid: 24612ed75223c774394bc098cf98ddad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6002197368267283205, guid: 24612ed75223c774394bc098cf98ddad,
         type: 3}
