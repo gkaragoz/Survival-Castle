@@ -9,7 +9,7 @@ public class BaseAttacker : MonoBehaviour {
     protected Base _baseStats;
 
     public float AttackRange { get { return _baseStats.GetAttackRange(); } }
-    public float AttackRate { get { return _baseStats.GetAttackRate(); } }
+    public float AttackRate { get { return _baseStats.GetManualAttackRate(); } }
     public float AttackDamage { get { return _baseStats.GetAttackDamage(); } }
 
     private void Awake() {
@@ -50,7 +50,7 @@ public class BaseAttacker : MonoBehaviour {
             return;
         }
 
-        _nextAttack = Time.time + _baseStats.GetAttackRate();
+        _nextAttack = Time.time + _baseStats.GetManualAttackRate();
 
         LaunchProjectile(targetPosition);
     }

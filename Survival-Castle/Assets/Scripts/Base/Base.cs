@@ -30,11 +30,11 @@ public class Base : MonoBehaviour {
         _base.CurrentHealth += value;
     }
 
-    public void IncreaseAttackRate(float value) {
-        _base.AttackRate -= value;
+    public void IncreaseManualAttackRate(float value) {
+        _base.ManualAttackRate -= value;
 
-        if (GetAttackRate() <= GetMaxAttackRate()) {
-            _base.AttackRate = GetMaxAttackRate();
+        if (GetManualAttackRate() <= GetManualMaxAttackRate()) {
+            _base.ManualAttackRate = GetManualMaxAttackRate();
         }
     }
 
@@ -62,8 +62,8 @@ public class Base : MonoBehaviour {
         }
     }
 
-    public void DecreaseAttackRate(float value) {
-        _base.AttackRate += value;
+    public void DecreaseManualAttackRate(float value) {
+        _base.ManualAttackRate += value;
     }
 
     public void DecreaseAttackDamage(float value) {
@@ -130,12 +130,12 @@ public class Base : MonoBehaviour {
         return _base.MinAttackRange;
     }
 
-    public float GetAttackRate() {
-        return _base.AttackRate;
+    public float GetManualAttackRate() {
+        return _base.ManualAttackRate;
     }
 
-    public float GetMaxAttackRate() {
-        return _base.MaxAttackRate;
+    public float GetManualMaxAttackRate() {
+        return _base.ManualMaxAttackRate;
     }
 
     public float GetAttackDamage() {

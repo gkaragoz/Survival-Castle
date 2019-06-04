@@ -33,7 +33,7 @@ public class BaseCrew : BaseAttacker {
             return;
         }
 
-        _nextAttack = Time.time + _baseStats.GetAttackRate();
+        _nextAttack = Time.time + _baseStats.GetManualAttackRate();
 
         LaunchProjectile(_baseTargetSelector.SelectedTarget.transform.position);
     }

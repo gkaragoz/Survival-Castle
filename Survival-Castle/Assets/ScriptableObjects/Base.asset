@@ -19,7 +19,7 @@ MonoBehaviour:
   _attackRange: 20
   _minAttackRange: 15
   _maxAttackRange: 40
-  _attackRate: 1
+  _attackRate: 0.25
   _maxAttackRate: 20
   _attackDamage: 250
   _minAttackDamage: 50

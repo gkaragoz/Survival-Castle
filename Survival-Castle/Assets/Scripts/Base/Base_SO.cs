@@ -25,9 +25,9 @@ public class Base_SO : ScriptableObject {
     [SerializeField]
     private float _maxAttackRange = 40f;
     [SerializeField]
-    private float _attackRate = 0.5f;
+    private float _manualAttackRate = 0.5f;
     [SerializeField]
-    private float _maxAttackRate = 20f;
+    private float _manualMaxAttackRate = 20f;
     [SerializeField]
     private float _attackDamage = 50f;
     [SerializeField]
@@ -68,14 +68,14 @@ public class Base_SO : ScriptableObject {
         set { _maxAttackRange = value; }
     }
 
-    public float AttackRate {
-        get { return _attackRate; }
-        set { _attackRate = value; }
+    public float ManualAttackRate {
+        get { return _manualAttackRate; }
+        set { _manualAttackRate = value; }
     }
 
-    public float MaxAttackRate {
-        get { return _maxAttackRate; }
-        set { _maxAttackRate = value; }
+    public float ManualMaxAttackRate {
+        get { return _manualMaxAttackRate; }
+        set { _manualMaxAttackRate = value; }
     }
 
     public float AttackDamage {
