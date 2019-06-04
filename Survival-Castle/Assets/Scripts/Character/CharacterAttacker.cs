@@ -8,7 +8,7 @@ public class CharacterAttacker : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private Transform _projectileSpawnTransform;
+    private Transform _projectileSpawnTransform = null;
 
     [Header("Debug")]
     [SerializeField]
@@ -16,7 +16,7 @@ public class CharacterAttacker : MonoBehaviour {
     private float _nextAttack = 0;
     [SerializeField]
     [Utils.ReadOnly]
-    private bool _isAttacking;
+    private bool _isAttacking = false;
 
     private CharacterController _characterController;
     private CharacterMotor _characterMotor;

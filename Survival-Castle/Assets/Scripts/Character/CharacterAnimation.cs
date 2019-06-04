@@ -4,7 +4,7 @@
 public class CharacterAnimation : MonoBehaviour {
 
     [SerializeField]
-    private Animator _animator;
+    private Animator _animator = null;
 
     private CharacterController _characterController;
     private CharacterMotor _characterMotor;

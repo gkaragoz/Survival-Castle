@@ -17,14 +17,12 @@ public class GameManager : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private Transform _target;
-    [SerializeField]
-    private BaseController _baseController;
+    private Transform _target = null;
 
     [Header("Debug")]
     [SerializeField]
     [Utils.ReadOnly]
-    private CharacterController[] _enemies;
+    private CharacterController[] _enemies = null;
     public CharacterController[] Enemies { get { return _enemies; } }
 
     public Transform Target { get { return _target; } }

@@ -19,15 +19,23 @@ public class LogManager : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private GameObject _chatContainer;
+    private GameObject _chatContainer = null;
     [SerializeField]
-    private GameObject _logTextPrefab;
+    private GameObject _logTextPrefab = null;
 
     [Header("Settings")]
     [SerializeField]
     private bool _isSystemOn = false;
     [SerializeField]
-    private Color _logColor, _exceptionColor, _errorColor, _assertColor, _warningColor;
+    private Color _logColor = Color.black;
+    [SerializeField]
+    private Color _exceptionColor = Color.black;
+    [SerializeField]
+    private Color _errorColor = Color.black;
+    [SerializeField]
+    private Color _assertColor = Color.black;
+    [SerializeField]
+    private Color _warningColor = Color.black;
 
     private Queue<Log> _logs = new Queue<Log>();
 

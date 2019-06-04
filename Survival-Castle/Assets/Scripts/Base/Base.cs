@@ -4,11 +4,11 @@ public class Base : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private Base_SO _baseDefinition_Template;
+    private Base_SO _baseDefinition_Template = null;
 
     [Header("Debug")]
     [SerializeField]
-    private Base_SO _base;
+    private Base_SO _base = null;
 
     #region Initializations
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class BaseUI : Menu {
 
     [SerializeField]
-    private Slider _slider;
+    private Slider _slider = null;
 
     private BaseController _baseController;
     private Base _baseStats;

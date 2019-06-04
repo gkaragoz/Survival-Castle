@@ -3,11 +3,11 @@
 public class SFXArrowProjectile : MonoBehaviour {
 
     [SerializeField]
-    private Projectile _projectile;
+    private Projectile _projectile = null;
     [SerializeField]
-    private Sound[] _arrowRelease;
+    private Sound[] _arrowRelease = null;
     [SerializeField]
-    private Sound _xBowArrowRelease;
+    private Sound _xBowArrowRelease = null;
 
     private AudioSource _audioSource;
 

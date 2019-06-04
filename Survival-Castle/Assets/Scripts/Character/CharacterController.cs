@@ -15,9 +15,9 @@ public class CharacterController : MonoBehaviour, IPooledObject {
 
     [Header("Initializations")]
     [SerializeField]
-    private SFXImpactFlesh _SFXImpactFlesh;
+    private SFXImpactFlesh _SFXImpactFlesh = null;
     [SerializeField]
-    private SFXEarnGolds _SFXEarnGolds;
+    private SFXEarnGolds _SFXEarnGolds = null;
 
     [Header("Debug")]
     [SerializeField]

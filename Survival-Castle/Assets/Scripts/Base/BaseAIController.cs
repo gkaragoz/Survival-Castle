@@ -18,7 +18,7 @@ public class BaseAIController : MonoBehaviour {
 
     [Header("Initializations")]
     [SerializeField]
-    private BaseController _baseController;
+    private BaseController _baseController = null;
 
     [Header("Settings")]
     [SerializeField]

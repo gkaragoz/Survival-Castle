@@ -4,11 +4,11 @@ public class Character : MonoBehaviour {
 
     [Header("Initialization")]
     [SerializeField]
-    private Character_SO _characterDefinition_Template;
+    private Character_SO _characterDefinition_Template = null;
 
     [Header("Debug")]
     [SerializeField]
-    private Character_SO _character;
+    private Character_SO _character = null;
 
     #region Initializations
 

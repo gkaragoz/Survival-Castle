@@ -9,13 +9,13 @@ public class Projectile : MonoBehaviour, IPooledObject {
 
     [Header("Initializations")]
     [SerializeField]
-    private TrailRenderer _tr;
+    private TrailRenderer _tr = null;
 
     [Header("Settings")]
     [SerializeField]
-    private Material _projectileLineRed;
+    private Material _projectileLineRed = null;
     [SerializeField]
-    private Material _projectileLineGreen;
+    private Material _projectileLineGreen = null;
 
     [Header("Debug")]
     [SerializeField]

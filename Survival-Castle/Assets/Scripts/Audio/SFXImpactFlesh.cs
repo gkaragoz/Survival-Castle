@@ -3,7 +3,7 @@
 public class SFXImpactFlesh : MonoBehaviour {
 
     [SerializeField]
-    private Sound[] _impactFlesh;
+    private Sound[] _impactFlesh = null;
 
     private AudioSource _audioSource;
 

@@ -5,35 +5,35 @@ using UnityEngine.UI;
 public class PanelDebug : MonoBehaviour {
 
     [SerializeField]
-    private TextMeshProUGUI _txtEnemiesAITickrate;
+    private TextMeshProUGUI _txtEnemiesAITickrate = null;
     [SerializeField]
-    private TextMeshProUGUI _txtBaseAITickrate;
+    private TextMeshProUGUI _txtBaseAITickrate = null;
     [SerializeField]
-    private TextMeshProUGUI _txtBaseAttackRate;
+    private TextMeshProUGUI _txtBaseAttackRate = null;
     [SerializeField]
-    private TextMeshProUGUI _txtBaseAttackDamage;
+    private TextMeshProUGUI _txtBaseAttackDamage = null;
     [SerializeField]
-    private TextMeshProUGUI _txtBaseAttackRange;
+    private TextMeshProUGUI _txtBaseAttackRange = null;
 
     [SerializeField]
-    private Button _btnSpawner;
+    private Button _btnSpawner = null;
     [SerializeField]
-    private TextMeshProUGUI _txtSpawner;
+    private TextMeshProUGUI _txtSpawner = null;
     [SerializeField]
-    private Button _btnEnemiesAIController;
+    private Button _btnEnemiesAIController = null;
     [SerializeField]
-    private TextMeshProUGUI _txtEnemiesAIController;
+    private TextMeshProUGUI _txtEnemiesAIController = null;
     [SerializeField]
-    private Button _btnBaseAIController;
+    private Button _btnBaseAIController = null;
     [SerializeField]
-    private TextMeshProUGUI _txtBaseAIController;
+    private TextMeshProUGUI _txtBaseAIController = null;
     [SerializeField]
-    private Color _startColor;
+    private Color _startColor = Color.black;
     [SerializeField]
-    private Color _stopColor;
+    private Color _stopColor = Color.black;
 
     [SerializeField]
-    private BaseController _baseController;
+    private BaseController _baseController = null;
 
     private bool _isSpawnerStarted = false;
     private bool _isEnemiesAIController = false;

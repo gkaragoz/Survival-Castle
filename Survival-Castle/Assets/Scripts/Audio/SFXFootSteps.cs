@@ -3,7 +3,7 @@
 public class SFXFootSteps : MonoBehaviour {
 
     [SerializeField]
-    private AudioClip[] _clips;
+    private AudioClip[] _clips = null;
 
     private AudioSource _audioSource;
 

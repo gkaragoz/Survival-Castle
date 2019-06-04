@@ -3,7 +3,7 @@
 public class SFXEarnGolds : MonoBehaviour {
 
     [SerializeField]
-    private Sound _earnGolds;
+    private Sound _earnGolds = null;
 
     private AudioSource _audioSource;
 
