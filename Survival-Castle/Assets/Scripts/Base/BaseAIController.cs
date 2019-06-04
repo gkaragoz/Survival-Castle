@@ -30,6 +30,15 @@ public class BaseAIController : MonoBehaviour {
 
     public float Tickrate { get { return _tickRate; } }
 
+    private void Start() {
+        _baseController.onCrewAdded += OnCrewAdded;
+    }
+
+    private void OnCrewAdded() {
+        StopControl();
+        StartControl();
+    }
+
     private IEnumerator IControllingProcess() {
         while (_isRunning) {
             yield return new WaitForSeconds(_tickRate);

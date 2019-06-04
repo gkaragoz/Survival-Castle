@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
     [Header("Initialization")]
     [SerializeField]
     private Transform _target = null;
+    [SerializeField]
+    private PlayerController _playerController = null;
 
     [Header("Debug")]
     [SerializeField]
@@ -35,6 +37,8 @@ public class GameManager : MonoBehaviour {
         InitializeOverlayHealthBars();
 
         EnemySpawner.instance.StartSpawning();
+        _playerController.AddCrew(true);
+        _playerController.AddCrew(true);
         BaseAIController.instance.StartControl();
         EnemyAIController.instance.StartControl();
     }

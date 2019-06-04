@@ -5,49 +5,26 @@ public class BaseAttacker : MonoBehaviour {
 
     [Header("Debug")]
     [SerializeField]
-    //[Utils.ReadOnly]
-    private bool _isAttacking = false;
-    [SerializeField]
     [Utils.ReadOnly]
     private float _nextAttack = 0;
 
-    private BaseTargetSelector _baseTargetSelector;
-    private Base _baseStats;
+    protected BaseTargetSelector _baseTargetSelector;
+    protected Base _baseStats;
 
-    public bool IsAttacking { get { return _isAttacking; } }
     public float AttackRange { get { return _baseStats.GetAttackRange(); } }
     public float AttackRate { get { return _baseStats.GetAttackRate(); } }
     public float AttackDamage { get { return _baseStats.GetAttackDamage(); } }
 
     private void Awake() {
-        _baseTargetSelector = GetComponent<BaseTargetSelector>();
-        _baseStats = GetComponent<Base>();
-    }
-
-    private void Update() {
-        if (_isAttacking) {
-            Attack();
+        if (_baseTargetSelector == null) {
+            _baseTargetSelector = GetComponent<BaseTargetSelector>();
+        } 
+        if (_baseStats == null) {
+            _baseStats = GetComponent<Base>();
         }
     }
 
-    private void Attack() {
-        _isAttacking = true;
-
-        if (Time.time <= _nextAttack) {
-            return;
-        }
-
-        _nextAttack = Time.time + _baseStats.GetAttackRate();
-
-        LaunchProjectile();
-    }
-
-    private bool IsTargetInRange() {
-        return Vector3.Distance(transform.position, _baseTargetSelector.SelectedTarget.transform.position) <= _baseStats.GetAttackRange() ? true : false;
-    }
-
-    private void LaunchProjectile() {
-        Vector3 targetPosition = _baseTargetSelector.SelectedTarget.transform.position;
+    protected void LaunchProjectile(Vector3 targetPosition) {
         Projectile projectile = ObjectPooler.instance.SpawnFromPool("Arrow", transform.position, Quaternion.identity).GetComponent<Projectile>();
         Vector3 forceVector = HelperArcProjectile.MagicShoot(_baseStats.GetShootAngle(), targetPosition, transform.position);
 
@@ -71,12 +48,14 @@ public class BaseAttacker : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.transform.position, _baseStats.GetAttackRange());
     }
 
-    public void StartAttacking() {
-        _isAttacking = true;
-    }
+    public void Attack(Vector3 targetPosition) {
+        if (Time.time <= _nextAttack) {
+            return;
+        }
 
-    public void StopAttacking() {
-        _isAttacking = false;
+        _nextAttack = Time.time + _baseStats.GetAttackRate();
+
+        LaunchProjectile(targetPosition);
     }
 
 }
