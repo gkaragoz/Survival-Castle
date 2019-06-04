@@ -3,10 +3,7 @@
 [RequireComponent(typeof(BaseTargetSelector))]
 public class BaseAttacker : MonoBehaviour {
 
-    [Header("Debug")]
-    [SerializeField]
-    [Utils.ReadOnly]
-    private float _nextAttack = 0;
+    protected float _nextAttack = 0;
 
     protected BaseTargetSelector _baseTargetSelector;
     protected Base _baseStats;
